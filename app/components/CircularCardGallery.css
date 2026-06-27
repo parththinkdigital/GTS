@@ -536,8 +536,7 @@ footer.bold-footer {
   }
 
   .footer-magnet-col {
-    grid-column: span 2;
-    max-width: 100%;
+    display: none !important;
   }
 
   .footer-large-title {
@@ -690,4 +689,36 @@ footer.bold-footer {
   margin-bottom: 0 !important;
 }
 
+/* ─── FOOTER BIG TEXT WITH GRADIENT SWEEP ─── */
+.footer-big-text {
+  width: 100%;
+  font-size: clamp(3rem, 12vw, 10rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-align: center;
+  padding: 40px 0 20px;
+  background: radial-gradient(circle at 50% 50%, var(--brand-blue, #0C2D89) 0%, var(--brand-blue, #0C2D89) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  user-select: none;
+  transition: background 0.35s ease;
+}
+.footer-big-text:hover {
+  background: radial-gradient(circle at var(--cursor-x, 50%) 50%, var(--brand-orange, #F5A623) 0%, var(--brand-blue-light, #1a4bc4) 45%, var(--brand-blue, #0C2D89) 75%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (max-width: 768px) {
+  .footer-big-text {
+    font-size: clamp(2.2rem, 14vw, 4rem);
+    padding: 24px 0 16px;
+  }
+  .footer-big-text:hover {
+    background: radial-gradient(circle at 50% 50%, var(--brand-blue, #0C2D89) 0%, var(--brand-blue, #0C2D89) 100%);
+  }
+}
 

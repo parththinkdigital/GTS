@@ -1,11 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import MagnetLines from "./MagnetLines";
-import CurvedLoop from "./CurvedLoop";
+
 
 export default function Footer() {
+  const bigTextRef = useRef(null);
+
+  const gitonBigTextMove = (e) => {
+    const el = bigTextRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const pct = ((e.clientX - rect.left) / rect.width) * 100;
+    el.style.setProperty('--cursor-x', `${pct}%`);
+  };
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -26,45 +36,22 @@ export default function Footer() {
     const leftCol = footer.querySelector(".footer-left-col");
     const rightGrid = footer.querySelector(".footer-right-grid");
     const magnetCol = footer.querySelector(".footer-magnet-col");
-    const curvedLoop = footer.querySelector(".curved-loop-jacket");
-
     const ctx = gsap.context(() => {
-      // 1. Fade-in and slide-up the main grid elements
-      if (leftCol || rightGrid || magnetCol) {
-        gsap.fromTo([leftCol, rightGrid, magnetCol].filter(Boolean),
-          { opacity: 0, y: 30 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            stagger: 0.1,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: footer,
-              start: "top 85%",
-              toggleActions: "play none none reverse"
-            }
+      gsap.fromTo([leftCol, rightGrid, magnetCol].filter(Boolean),
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: footer,
+            start: "top 85%",
+            toggleActions: "play none none reverse"
           }
-        );
-      }
-
-      // 2. Smooth fade-in for the curved loop text marquee at the bottom
-      if (curvedLoop) {
-        gsap.fromTo(curvedLoop,
-          { opacity: 0, y: 35 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1.0,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: curvedLoop,
-              start: "top 95%",
-              toggleActions: "play none none reverse"
-            }
-          }
-        );
-      }
+        }
+      );
     });
 
     return () => ctx.revert();
@@ -186,14 +173,8 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Curved loop marquee text at the bottom */}
-          <CurvedLoop
-            marqueeText="GTS Finlabs ✦ GTS Finlabs ✦ GTS Finlabs ✦ "
-            speed={1.5}
-            curveAmount={120}
-            direction="left"
-            interactive={true}
-          />
+          {/* Big brand text with cursor-following gradient */}
+          <div ref={bigTextRef} className="footer-big-text" onMouseMove={onBigTextMove}>GTS Finlabs</div>
         </div>
       </footer>
     </div>

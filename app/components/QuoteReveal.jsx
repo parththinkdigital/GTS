@@ -30,7 +30,7 @@ export default function QuoteReveal() {
           scrollTrigger: {
             trigger: section,
             start: "top 80%", // starts when section enters viewport
-            end: "bottom 30%", // ends before section leaves viewport
+            end: "bottom bottom", // ends before section leaves viewport
             scrub: 1.2, // smooth scroll catch-up
             invalidateOnRefresh: true,
           }

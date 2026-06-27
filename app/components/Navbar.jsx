@@ -1,9 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 
-// Icons matching navbar-idea.png exactly
+const navItems = [
+  { id: "hero", label: "Home" },
+  { id: "products", label: "Products" },
+  { id: "services", label: "Services" },
+  { id: "solutions", label: "Solutions" },
+  { id: "impact", label: "Impact" },
+];
+
 const HomeIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
@@ -40,120 +47,150 @@ const SettingIcon = () => (
 );
 
 export default function Navbar({ activeSection }) {
-  const [blobStyle, setBlobStyle] = useState({ left: 0, width: 0, opacity: 0 });
+  const [blobStyle, setBlobStyle] = useState({ left: 0, right: 0, opacity: 0 });
+  const [menuOpen, setMenuOpen] = useState(false);
   const dockRef = useRef(null);
+  const menuRef = useRef(null);
 
-  const updateBlob = (element) => {
+  const updateBlob = useCallback((element) => {
     if (!element || !dockRef.current) return;
     const rect = element.getBoundingClientRect();
     const dockRect = dockRef.current.getBoundingClientRect();
-    
     setBlobStyle({
       left: rect.left - dockRect.left,
       right: dockRect.right - rect.right,
-      opacity: 1
+      opacity: 1,
     });
-  };
+  }, []);
 
-  const handleMouseEnter = (e) => {
-    updateBlob(e.currentTarget);
-  };
-
+  const handleMouseEnter = (e) => updateBlob(e.currentTarget);
   const handleMouseLeave = () => {
     const activeEl = dockRef.current?.querySelector("a.active");
-    if (activeEl) {
-      updateBlob(activeEl);
-    } else {
-      setBlobStyle((prev) => ({ ...prev, opacity: 0 }));
-    }
+    if (activeEl) updateBlob(activeEl);
+    else setBlobStyle((prev) => ({ ...prev, opacity: 0 }));
   };
 
   useEffect(() => {
-    // Small timeout to allow DOM to render and layout correctly before measuring
     const timeout = setTimeout(() => {
       const activeEl = dockRef.current?.querySelector("a.active");
-      if (activeEl) {
-        updateBlob(activeEl);
-      }
+      if (activeEl) updateBlob(activeEl);
     }, 100);
-
     return () => clearTimeout(timeout);
-  }, [activeSection]);
+  }, [activeSection, updateBlob]);
+
+  useEffect(() => {
+    let tween;
+    const init = async () => {
+      if (!menuRef.current) return;
+      const gsap = (await import("gsap")).default;
+      if (menuOpen) {
+        tween = gsap.fromTo(
+          menuRef.current,
+          { clipPath: "circle(0% at 100% 0%)" },
+          { clipPath: "circle(150% at 100% 0%)", duration: 0.6, ease: "power3.inOut" }
+        );
+      } else {
+        tween = gsap.to(
+          menuRef.current,
+          {
+            clipPath: "circle(0% at 100% 0%)",
+            duration: 0.4,
+            ease: "power3.inOut",
+            onComplete: () => {
+              if (menuRef.current) gsap.set(menuRef.current, { clipPath: "" });
+            },
+          }
+        );
+      }
+    };
+    init();
+    return () => { tween?.kill(); };
+  }, [menuOpen]);
+
+  const handleNavClick = (e, id) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <>
-      {/* Static top brand header */}
       <header className="site-header">
         <div className="container header-container">
           <img src="/gts-logo.png" alt="GTS Finlabs" className="site-logo" />
-          <a href="#" className="header-cta-btn">
-            Schedule a Demo
-          </a>
+          <div className="header-right">
+            <a href="#" className="header-cta-btn">Schedule a Demo</a>
+            <button
+              onClick={() => setMenuOpen((p) => !p)}
+              className="hamburger-btn"
+              aria-label="Toggle menu"
+            >
+              <span className={`hamburger-line ${menuOpen ? "open" : ""}`} />
+            </button>
+          </div>
         </div>
       </header>
 
-      {/* Floating Glassmorphism Navigation Dock */}
+      {/* Mobile menu overlay */}
+      <div
+        ref={menuRef}
+        className={`mobile-menu ${menuOpen ? "visible" : ""}`}
+        style={{ pointerEvents: menuOpen ? "auto" : "none" }}
+      >
+        <div className="mobile-menu-inner">
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="mobile-close"
+            aria-label="Close menu"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" width="20" height="20">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+          <img src="/gts-logo.png" alt="GTS Finlabs" className="mobile-menu-logo" />
+          <nav className="mobile-nav-links">
+            {navItems.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className={activeSection === item.id ? "active" : ""}
+                onClick={(e) => handleNavClick(e, item.id)}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </div>
+
+      {/* Desktop dock */}
       <nav className="glass-dock" ref={dockRef} onMouseLeave={handleMouseLeave}>
-        {/* sliding background blob */}
         <div
           className="dock-blob"
           style={{
             left: `${blobStyle.left}px`,
             right: `${blobStyle.right}px`,
-            opacity: blobStyle.opacity
+            opacity: blobStyle.opacity,
           }}
         />
-
-        <a
-          href="#hero"
-          className={activeSection === "hero" ? "active" : ""}
-          onMouseEnter={handleMouseEnter}
-        >
-          <div className="dock-item">
-            <HomeIcon />
-            <span>Home</span>
-          </div>
-        </a>
-        <a
-          href="#products"
-          className={activeSection === "products" ? "active" : ""}
-          onMouseEnter={handleMouseEnter}
-        >
-          <div className="dock-item">
-            <FolderIcon />
-            <span>Products</span>
-          </div>
-        </a>
-        <a
-          href="#services"
-          className={activeSection === "services" ? "active" : ""}
-          onMouseEnter={handleMouseEnter}
-        >
-          <div className="dock-item">
-            <FaqIcon />
-            <span>Services</span>
-          </div>
-        </a>
-        <a
-          href="#solutions"
-          className={activeSection === "solutions" ? "active" : ""}
-          onMouseEnter={handleMouseEnter}
-        >
-          <div className="dock-item">
-            <InboxIcon />
-            <span>Solutions</span>
-          </div>
-        </a>
-        <a
-          href="#impact"
-          className={activeSection === "impact" ? "active" : ""}
-          onMouseEnter={handleMouseEnter}
-        >
-          <div className="dock-item">
-            <SettingIcon />
-            <span>Impact</span>
-          </div>
-        </a>
+        {navItems.map((item) => (
+          <a
+            key={item.id}
+            href={`#${item.id}`}
+            className={activeSection === item.id ? "active" : ""}
+            onMouseEnter={handleMouseEnter}
+          >
+            <div className="dock-item">
+              {item.id === "hero" && <HomeIcon />}
+              {item.id === "products" && <FolderIcon />}
+              {item.id === "services" && <FaqIcon />}
+              {item.id === "solutions" && <InboxIcon />}
+              {item.id === "impact" && <SettingIcon />}
+              <span>{item.label}</span>
+            </div>
+          </a>
+        ))}
       </nav>
     </>
   );
