@@ -12,9 +12,8 @@ export default function Products() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        padding: "80px 0",
+        padding: "60git px 0",
         boxSizing: "border-box",
-        overflow: "hidden",
         position: "relative"
       }}
     >
@@ -80,7 +79,7 @@ export default function Products() {
       </div>
 
       {/* Curved DOM slider for interactive product cards */}
-      <div className="products-gallery-container" style={{ height: "520px", position: "relative", width: "100%", overflow: "hidden", marginTop: "20px", zIndex: 1 }}>
+      <div className="products-gallery-container" style={{ height: "520px", position: "relative", width: "100%", overflow: "hidden", marginTop: "4px", zIndex: 1 }}>
         <CircularCardGallery
           bend={3.2}
           scrollSpeed={1.4}
