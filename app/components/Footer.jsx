@@ -8,7 +8,7 @@ import MagnetLines from "./MagnetLines";
 export default function Footer() {
   const bigTextRef = useRef(null);
 
-  const gitonBigTextMove = (e) => {
+  const onBigTextMove = (e) => {
     const el = bigTextRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
