@@ -55,25 +55,34 @@ export default function Navbar({ activeSection }) {
   const updateBlob = useCallback((element) => {
     if (!element || !dockRef.current) return;
     const rect = element.getBoundingClientRect();
-    const dockRect = dockRef.current.getBoundingClientRect();
+    const linksContainer = dockRef.current.querySelector(".dock-links-container");
+    if (!linksContainer) return;
+    const containerRect = linksContainer.getBoundingClientRect();
+    const safeInset = 4;
+    const left = Math.max(safeInset, rect.left - containerRect.left);
+    const right = Math.max(safeInset, containerRect.right - rect.right);
     setBlobStyle({
-      left: rect.left - dockRect.left,
-      right: dockRect.right - rect.right,
+      left,
+      right,
       opacity: 1,
     });
   }, []);
 
   const handleMouseEnter = (e) => updateBlob(e.currentTarget);
   const handleMouseLeave = () => {
-    const activeEl = dockRef.current?.querySelector("a.active");
+    const activeEl = dockRef.current?.querySelector(".dock-link-item.active");
     if (activeEl) updateBlob(activeEl);
     else setBlobStyle((prev) => ({ ...prev, opacity: 0 }));
   };
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      const activeEl = dockRef.current?.querySelector("a.active");
-      if (activeEl) updateBlob(activeEl);
+      const activeEl = dockRef.current?.querySelector(".dock-link-item.active");
+      if (activeEl) {
+        updateBlob(activeEl);
+      } else {
+        setBlobStyle((prev) => ({ ...prev, opacity: 0 }));
+      }
     }, 100);
     return () => clearTimeout(timeout);
   }, [activeSection, updateBlob]);
@@ -166,31 +175,62 @@ export default function Navbar({ activeSection }) {
 
       {/* Desktop dock */}
       <nav className="glass-dock" ref={dockRef} onMouseLeave={handleMouseLeave}>
-        <div
-          className="dock-blob"
-          style={{
-            left: `${blobStyle.left}px`,
-            right: `${blobStyle.right}px`,
-            opacity: blobStyle.opacity,
+        {/* Brand Logo */}
+        <a
+          href="#hero"
+          className="dock-logo-container"
+          onClick={(e) => handleNavClick(e, "hero")}
+        >
+          <img src="/gts-logo.png" alt="GTS Finlabs" className="dock-logo" />
+        </a>
+
+        {/* Separator */}
+        <div className="dock-divider" />
+
+        {/* Navigation Links */}
+        <div className="dock-links-container">
+          <div
+            className="dock-blob"
+            style={{
+              left: `${blobStyle.left}px`,
+              right: `${blobStyle.right}px`,
+              opacity: blobStyle.opacity,
+            }}
+          />
+          {navItems.map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              className={`dock-link-item ${activeSection === item.id ? "active" : ""}`}
+              onMouseEnter={handleMouseEnter}
+              onClick={(e) => handleNavClick(e, item.id)}
+            >
+              <div className="dock-item">
+                {item.id === "hero" && <HomeIcon />}
+                {item.id === "products" && <FolderIcon />}
+                {item.id === "services" && <FaqIcon />}
+                {item.id === "solutions" && <InboxIcon />}
+                {item.id === "impact" && <SettingIcon />}
+                <span>{item.label}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        {/* Separator */}
+        <div className="dock-divider" />
+
+        {/* CTA Button */}
+        <a
+          href="#"
+          className="dock-cta-btn"
+          onClick={(e) => {
+            e.preventDefault();
+            document.querySelector("footer")?.scrollIntoView({ behavior: "smooth" });
           }}
-        />
-        {navItems.map((item) => (
-          <a
-            key={item.id}
-            href={`#${item.id}`}
-            className={activeSection === item.id ? "active" : ""}
-            onMouseEnter={handleMouseEnter}
-          >
-            <div className="dock-item">
-              {item.id === "hero" && <HomeIcon />}
-              {item.id === "products" && <FolderIcon />}
-              {item.id === "services" && <FaqIcon />}
-              {item.id === "solutions" && <InboxIcon />}
-              {item.id === "impact" && <SettingIcon />}
-              <span>{item.label}</span>
-            </div>
-          </a>
-        ))}
+        >
+          Schedule a Demo
+        </a>
       </nav>
     </>
   );
