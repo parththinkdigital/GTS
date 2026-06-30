@@ -42,7 +42,7 @@ export default function Home() {
   return (
     <div className="v2-body-wrap">
       <Navbar activeSection={activeSection} />
-      <Hero />
+      <Hero/>
       <QuoteReveal />
       <Products />
       <Services />
