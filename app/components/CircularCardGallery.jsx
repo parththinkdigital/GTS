@@ -22,7 +22,7 @@ export default function CircularCardGallery({
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    
+
     const handleWidth = () => {
       const w = window.innerWidth;
       if (w < 480) {
@@ -77,7 +77,7 @@ export default function CircularCardGallery({
 
       cardsRef.current.forEach((cardEl, idx) => {
         if (!cardEl) return;
-        
+
         // Horizontal distance from the center of the container
         const distance = idx * cardStep - scrollVal;
         const absDist = Math.abs(distance);
@@ -131,7 +131,22 @@ export default function CircularCardGallery({
 
     const ctx = gsap.context(() => {
       const playhead = { progress: 0 };
-      
+
+      // Scale scroll distance by screen size so the pin doesn't reserve
+      // a huge amount of scroll space on mobile (where cards are narrower).
+      const getScrollEnd = () => {
+        const w = window.innerWidth;
+        if (w < 480) {
+          // Mobile small: reduce to ~40% of full scroll distance
+          return maxScroll * 0.42;
+        } else if (w < 768) {
+          // Mobile large: reduce to ~55%
+          return maxScroll * 0.55;
+        }
+        // Desktop: full scroll distance
+        return maxScroll;
+      };
+
       // Animate progress using a GSAP tween controlled by ScrollTrigger scrub
       mainTween = gsap.to(playhead, {
         progress: 1,
@@ -141,7 +156,7 @@ export default function CircularCardGallery({
           trigger: section,
           pin: true,
           start: "top top",
-          end: () => `+=${maxScroll}`,
+          end: () => `+=${getScrollEnd()}`,
           scrub: 0.8, // Smooth scrub easing
           invalidateOnRefresh: true,
           onUpdate: () => {
@@ -150,6 +165,7 @@ export default function CircularCardGallery({
           }
         }
       });
+
 
       // Animate section header fade-in when section comes into view
       const header = section.querySelector(".section-header");

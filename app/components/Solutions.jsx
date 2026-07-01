@@ -74,7 +74,7 @@ export default function Solutions() {
             autoAlpha: 1,
             y: 0,
             filter: "blur(0px)",
-            duration: 1.2,
+            duration: 1.0,
             ease: "power2.out",
           },
           0,
@@ -94,10 +94,10 @@ export default function Solutions() {
               y: 0,
               rotateY: 0,
               filter: "blur(0px)",
-              duration: 3,
+              duration: 1.5,
               ease: "power2.out",
             },
-            0.28,
+            0.14,
           )
           .fromTo(
             columns[1],
@@ -107,10 +107,10 @@ export default function Solutions() {
               y: 0,
               scale: 1,
               filter: "blur(0px)",
-              duration: 3,
+              duration: 1.5,
               ease: "power2.out",
             },
-            0.5,
+            0.25,
           )
           .fromTo(
             columns[2],
@@ -121,10 +121,10 @@ export default function Solutions() {
               y: 0,
               rotateY: 0,
               filter: "blur(0px)",
-              duration: 3,
+              duration: 1.5,
               ease: "power2.out",
             },
-            0.72,
+            0.36,
           )
           .fromTo(
             icons,
@@ -133,11 +133,11 @@ export default function Solutions() {
               scale: 1,
               rotate: 0,
               opacity: 1,
-              duration: 1.05,
-              stagger: 0.055,
+              duration: 0.525,
+              stagger: 0.0275,
               ease: "back.out(1.45)",
             },
-            1.62,
+            0.81,
           );
       });
 
@@ -158,7 +158,7 @@ export default function Solutions() {
             autoAlpha: 1,
             y: 0,
             filter: "blur(0px)",
-            duration: 0.9,
+            duration: 0.45,
             ease: "power2.out",
           },
           0,
@@ -170,11 +170,11 @@ export default function Solutions() {
               autoAlpha: 1,
               y: 0,
               filter: "blur(0px)",
-              duration: 1.25,
-              stagger: 0.14,
+              duration: 0.625,
+              stagger: 0.07,
               ease: "power3.out",
             },
-            0.16,
+            0.08,
           )
           .fromTo(
             icons,
@@ -182,11 +182,11 @@ export default function Solutions() {
             {
               scale: 1,
               opacity: 1,
-              duration: 0.58,
-              stagger: 0.035,
+              duration: 0.29,
+              stagger: 0.0175,
               ease: "back.out(1.5)",
             },
-            0.56,
+            0.28,
           );
       });
 

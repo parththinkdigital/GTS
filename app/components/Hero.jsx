@@ -83,19 +83,40 @@ export default function Hero() {
         stagger: 0.08,
       }, 0.72);
 
-    gsap.to(".hero-title", {
-      "--hero-title-radius": "220%",
-      "--hero-title-x": "100%",
-      "--hero-title-y": "100%",
-      ease: "none",
-      scrollTrigger: {
-        trigger: root,
-        start: "top top",
-        end: "+=120%",
-        pin: true,
-        anticipatePin: 1,
-        scrub: 0.8,
-      },
+    const mm = gsap.matchMedia(root);
+
+    mm.add("(min-width: 769px)", () => {
+      gsap.to(".hero-title", {
+        "--hero-title-radius": "220%",
+        "--hero-title-x": "100%",
+        "--hero-title-y": "100%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: root,
+          start: "top top",
+          end: "+=120%",
+          pin: true,
+          anticipatePin: 1,
+          scrub: 0.8,
+        },
+      });
+    });
+
+    mm.add("(max-width: 768px)", () => {
+      gsap.to(".hero-title", {
+        "--hero-title-radius": "220%",
+        "--hero-title-x": "100%",
+        "--hero-title-y": "100%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: root,
+          start: "top top",
+          end: "+=160%", // Extended end threshold for mobile viewports
+          pin: true,
+          anticipatePin: 1,
+          scrub: 0.8,
+        },
+      });
     });
 
     gsap.to(".hero-flow-line", {
@@ -196,7 +217,7 @@ export default function Hero() {
 
       <div className="hero-grid">
         <div className="hero-eyebrow">AI-led fintech infrastructure</div>
-        <h1 className="hero-title" data-title={"Powering Smarter Financial Journeys"}>
+        <h1 className="hero-title" data-title={"Powering Smarter\nFinancial Journeys"}>
           <span className="hero-title-line">Powering Smarter</span>
           <span className="hero-title-line accent">Financial Journeys</span>
         </h1>

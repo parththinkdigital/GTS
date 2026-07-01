@@ -17,11 +17,43 @@ import {
 
 export default function LeadForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [formError, setFormError] = useState("");
   const nameInputRef = useRef(null);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setSubmitted(true);
+    setFormError("");
+    setLoading(true);
+
+    const form = event.currentTarget;
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      company: form.company.value,
+      phone: form.phone.value,
+      message: form.message.value,
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const json = await res.json();
+
+      if (!res.ok) {
+        setFormError(json.error || "Something went wrong. Please try again.");
+      } else {
+        setSubmitted(true);
+      }
+    } catch {
+      setFormError("Network error. Please check your connection and try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const focusForm = () => {
@@ -34,7 +66,7 @@ export default function LeadForm() {
       <div className="lead-orb lead-orb-orange" />
 
       <div className="container">
-        <div className="section-header">
+        <div className="section-header centered">
           <div className="section-eyebrow">
             <span className="e-dot"></span> Talk to GTS
           </div>
@@ -117,9 +149,24 @@ export default function LeadForm() {
                 </span>
               </label>
 
-              <button className="lead-submit" type="submit">
-                Submit request
-                <Send size={14} strokeWidth={2} aria-hidden="true" />
+              {formError && (
+                <p role="alert" style={{
+                  color: "#dc2626",
+                  fontSize: "0.82rem",
+                  marginTop: "-4px",
+                  marginBottom: "4px",
+                  padding: "8px 12px",
+                  background: "rgba(220,38,38,0.07)",
+                  borderRadius: "8px",
+                  border: "1px solid rgba(220,38,38,0.18)",
+                }}>
+                  {formError}
+                </p>
+              )}
+
+              <button className="lead-submit" type="submit" disabled={loading} aria-busy={loading}>
+                {loading ? "Sending…" : "Submit request"}
+                {!loading && <Send size={14} strokeWidth={2} aria-hidden="true" />}
               </button>
             </form>
 
