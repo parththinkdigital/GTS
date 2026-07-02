@@ -69,7 +69,7 @@ export default function LeadForm() {
         <div className="lead-container">
           <div className="lead-copy">
             <div className="section-eyebrow">
-              <span className="e-dot"></span> Talk to GTS
+              <span className="e-dot"></span> Talk to GTS Finlabs
             </div>
             <h2 className="section-title">
               Ready to modernize your financial stack?
