@@ -3,9 +3,8 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+gsap.registerPlugin(useGSAP);
 
 export default function Hero() {
   const containerRef = useRef(null);
@@ -20,84 +19,30 @@ export default function Hero() {
       ".hero-title-line",
       ".hero p",
       ".hero-actions",
-      ".hero-trust-pill",
     ];
 
     if (reduceMotion) {
       gsap.set(contentTargets, { autoAlpha: 1, y: 0, filter: "blur(0px)" });
-      gsap.set(".hero-title", {
-        "--hero-title-radius": "220%",
-        "--hero-title-x": "50%",
-        "--hero-title-y": "50%",
-      });
       gsap.set(".hero-fintech-bg", { autoAlpha: 1 });
       return;
     }
 
-    gsap.set(contentTargets, { autoAlpha: 0, y: 16, filter: "blur(4px)" });
-    gsap.set(".hero-title", {
-      "--hero-title-radius": "0%",
-      "--hero-title-x": "0%",
-      "--hero-title-y": "0%",
-    });
+    gsap.set(contentTargets, { autoAlpha: 0, y: 24, filter: "blur(8px)" });
     gsap.set(".hero-fintech-bg", { autoAlpha: 0 });
 
     const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
     intro
-      .to(".hero-fintech-bg", { autoAlpha: 1, duration: 0.8 })
-      .to(".hero-eyebrow", { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.45 }, 0.12)
+      .to(".hero-fintech-bg", { autoAlpha: 1, duration: 1.0 })
+      .to(".hero-eyebrow", { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.5 }, 0.15)
       .to(".hero-title-line", {
         autoAlpha: 1,
         y: 0,
         filter: "blur(0px)",
-        duration: 0.72,
-        stagger: 0.08,
-      }, 0.2)
-      .to(".hero p", { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.58 }, 0.44)
-      .to(".hero-actions", { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.5 }, 0.58)
-      .to(".hero-trust-pill", {
-        autoAlpha: 1,
-        y: 0,
-        filter: "blur(0px)",
-        duration: 0.42,
-        stagger: 0.06,
-      }, 0.68);
-
-    const mm = gsap.matchMedia(root);
-
-    mm.add("(min-width: 769px)", () => {
-      gsap.to(".hero-title", {
-        "--hero-title-radius": "220%",
-        "--hero-title-x": "100%",
-        "--hero-title-y": "100%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: root,
-          start: "top top",
-          end: "+=120%",
-          pin: true,
-          anticipatePin: 1,
-          scrub: 0.8,
-        },
-      });
-    });
-
-    mm.add("(max-width: 768px)", () => {
-      gsap.to(".hero-title", {
-        "--hero-title-radius": "220%",
-        "--hero-title-x": "100%",
-        "--hero-title-y": "100%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: root,
-          start: "top top",
-          end: "+=160%", // Extended end threshold for mobile viewports
-          pin: true,
-          anticipatePin: 1,
-          scrub: 0.8,
-        },
-      });
-    });
+        duration: 0.8,
+        stagger: 0.12,
+      }, 0.25)
+      .to(".hero p", { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.6 }, 0.55)
+      .to(".hero-actions", { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.5 }, 0.7);
 
   }, { scope: containerRef });
 
@@ -111,7 +56,7 @@ export default function Hero() {
 
       <div className="hero-grid">
         <div className="hero-eyebrow">AI-led fintech infrastructure</div>
-        <h1 className="hero-title" data-title={"Powering Smarter\nFinancial Journeys"}>
+        <h1 className="hero-title">
           <span className="hero-title-line">Powering Smarter</span>
           <span className="hero-title-line accent">Financial Journeys</span>
         </h1>
@@ -125,7 +70,7 @@ export default function Hero() {
             className="btn btn-primary"
             onClick={(event) => {
               event.preventDefault();
-              document.querySelector("footer")?.scrollIntoView({ behavior: "smooth" });
+              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
             }}
           >
             Schedule a Demo <span className="arrow">→</span>

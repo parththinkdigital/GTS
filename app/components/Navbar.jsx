@@ -121,7 +121,16 @@ export default function Navbar({ activeSection }) {
         <div className="container header-container">
           <img src="/gts-logo.png" alt="GTS Finlabs" className="site-logo" />
           <div className="header-right">
-            <a href="#" className="header-cta-btn">Schedule a Demo</a>
+            <a
+              href="#"
+              className="header-cta-btn"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              Schedule a Demo
+            </a>
             <button
               onClick={() => setMenuOpen((p) => !p)}
               className="hamburger-btn"
@@ -218,7 +227,7 @@ export default function Navbar({ activeSection }) {
           className="dock-cta-btn"
           onClick={(e) => {
             e.preventDefault();
-            document.querySelector("footer")?.scrollIntoView({ behavior: "smooth" });
+            document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
           }}
         >
           Schedule a Demo
