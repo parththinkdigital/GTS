@@ -8,7 +8,6 @@ const navItems = [
   { id: "products", label: "Products" },
   { id: "services", label: "Services" },
   { id: "solutions", label: "Solutions" },
-  { id: "impact", label: "Impact" },
 ];
 
 const HomeIcon = () => (
@@ -39,12 +38,6 @@ const InboxIcon = () => (
   </svg>
 );
 
-const SettingIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="3" />
-    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
-  </svg>
-);
 
 export default function Navbar({ activeSection }) {
   const [blobStyle, setBlobStyle] = useState({ left: 0, right: 0, opacity: 0 });
@@ -55,25 +48,34 @@ export default function Navbar({ activeSection }) {
   const updateBlob = useCallback((element) => {
     if (!element || !dockRef.current) return;
     const rect = element.getBoundingClientRect();
-    const dockRect = dockRef.current.getBoundingClientRect();
+    const linksContainer = dockRef.current.querySelector(".dock-links-container");
+    if (!linksContainer) return;
+    const containerRect = linksContainer.getBoundingClientRect();
+    const safeInset = 4;
+    const left = Math.max(safeInset, rect.left - containerRect.left);
+    const right = Math.max(safeInset, containerRect.right - rect.right);
     setBlobStyle({
-      left: rect.left - dockRect.left,
-      right: dockRect.right - rect.right,
+      left,
+      right,
       opacity: 1,
     });
   }, []);
 
   const handleMouseEnter = (e) => updateBlob(e.currentTarget);
   const handleMouseLeave = () => {
-    const activeEl = dockRef.current?.querySelector("a.active");
+    const activeEl = dockRef.current?.querySelector(".dock-link-item.active");
     if (activeEl) updateBlob(activeEl);
     else setBlobStyle((prev) => ({ ...prev, opacity: 0 }));
   };
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      const activeEl = dockRef.current?.querySelector("a.active");
-      if (activeEl) updateBlob(activeEl);
+      const activeEl = dockRef.current?.querySelector(".dock-link-item.active");
+      if (activeEl) {
+        updateBlob(activeEl);
+      } else {
+        setBlobStyle((prev) => ({ ...prev, opacity: 0 }));
+      }
     }, 100);
     return () => clearTimeout(timeout);
   }, [activeSection, updateBlob]);
@@ -119,7 +121,16 @@ export default function Navbar({ activeSection }) {
         <div className="container header-container">
           <img src="/gts-logo.png" alt="GTS Finlabs" className="site-logo" />
           <div className="header-right">
-            <a href="#" className="header-cta-btn">Schedule a Demo</a>
+            <a
+              href="#"
+              className="header-cta-btn"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              Schedule a Demo
+            </a>
             <button
               onClick={() => setMenuOpen((p) => !p)}
               className="hamburger-btn"
@@ -166,31 +177,61 @@ export default function Navbar({ activeSection }) {
 
       {/* Desktop dock */}
       <nav className="glass-dock" ref={dockRef} onMouseLeave={handleMouseLeave}>
-        <div
-          className="dock-blob"
-          style={{
-            left: `${blobStyle.left}px`,
-            right: `${blobStyle.right}px`,
-            opacity: blobStyle.opacity,
+        {/* Brand Logo */}
+        <a
+          href="#hero"
+          className="dock-logo-container"
+          onClick={(e) => handleNavClick(e, "hero")}
+        >
+          <img src="/gts-logo.png" alt="GTS Finlabs" className="dock-logo" />
+        </a>
+
+        {/* Separator */}
+        <div className="dock-divider" />
+
+        {/* Navigation Links */}
+        <div className="dock-links-container">
+          <div
+            className="dock-blob"
+            style={{
+              left: `${blobStyle.left}px`,
+              right: `${blobStyle.right}px`,
+              opacity: blobStyle.opacity,
+            }}
+          />
+          {navItems.map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              className={`dock-link-item ${activeSection === item.id ? "active" : ""}`}
+              onMouseEnter={handleMouseEnter}
+              onClick={(e) => handleNavClick(e, item.id)}
+            >
+              <div className="dock-item">
+                {item.id === "hero" && <HomeIcon />}
+                {item.id === "products" && <FolderIcon />}
+                {item.id === "services" && <FaqIcon />}
+                {item.id === "solutions" && <InboxIcon />}
+                <span>{item.label}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        {/* Separator */}
+        <div className="dock-divider" />
+
+        {/* CTA Button */}
+        <a
+          href="#"
+          className="dock-cta-btn"
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
           }}
-        />
-        {navItems.map((item) => (
-          <a
-            key={item.id}
-            href={`#${item.id}`}
-            className={activeSection === item.id ? "active" : ""}
-            onMouseEnter={handleMouseEnter}
-          >
-            <div className="dock-item">
-              {item.id === "hero" && <HomeIcon />}
-              {item.id === "products" && <FolderIcon />}
-              {item.id === "services" && <FaqIcon />}
-              {item.id === "solutions" && <InboxIcon />}
-              {item.id === "impact" && <SettingIcon />}
-              <span>{item.label}</span>
-            </div>
-          </a>
-        ))}
+        >
+          Schedule a Demo
+        </a>
       </nav>
     </>
   );

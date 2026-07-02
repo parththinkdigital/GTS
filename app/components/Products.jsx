@@ -5,14 +5,9 @@ import CircularCardGallery from "./CircularCardGallery";
 export default function Products() {
   return (
     <section
-      className="section"
+      className="section products-section"
       id="products"
       style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        padding: "60git px 0",
         boxSizing: "border-box",
         position: "relative"
       }}
@@ -79,13 +74,13 @@ export default function Products() {
       </div>
 
       {/* Curved DOM slider for interactive product cards */}
-      <div className="products-gallery-container" style={{ height: "520px", position: "relative", width: "100%", overflow: "hidden", marginTop: "4px", zIndex: 1 }}>
+      <div className="products-gallery-container z-100">
         <CircularCardGallery
           bend={3.2}
           scrollSpeed={1.4}
           scrollEase={0.07}
-          cardWidth={330}
-          cardGap={24}
+          cardWidth={310}
+          cardGap={22}
           items={[
             <div className="card" key="1">
               <svg className="card-img" viewBox="0 0 320 180" fill="none">
@@ -257,8 +252,8 @@ export default function Products() {
       </div>
 
       {/* Scroll Progress Bar */}
-      <div className="products-progress-container" style={{ width: "220px", height: "4px", background: "rgba(12, 45, 137, 0.08)", margin: "40px auto 0 auto", borderRadius: "2px", overflow: "hidden", position: "relative", zIndex: 2 }}>
-        <div className="products-progress-bar" style={{ width: "100%", height: "100%", background: "linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-orange) 100%)", transform: "scaleX(0)", transformOrigin: "left", willChange: "transform" }}></div>
+      <div className="products-progress-container">
+        <div className="products-progress-bar"></div>
       </div>
     </section>
   );

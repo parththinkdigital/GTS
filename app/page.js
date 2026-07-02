@@ -11,6 +11,7 @@ import Products from "./components/Products";
 import Services from "./components/Services";
 import Solutions from "./components/Solutions";
 import Impact from "./components/Impact";
+import LeadForm from "./components/LeadForm";
 import Footer from "./components/Footer";
 
 export default function Home() {
@@ -42,12 +43,12 @@ export default function Home() {
   return (
     <div className="v2-body-wrap">
       <Navbar activeSection={activeSection} />
-      <Hero />
-      <QuoteReveal />
+      <Hero/>
       <Products />
       <Services />
       <Solutions />
-      <Impact />
+      <LeadForm />
+
       <Footer />
     </div>
   );
