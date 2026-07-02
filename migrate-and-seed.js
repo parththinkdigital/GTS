@@ -23,7 +23,22 @@ async function migrateAndSeed() {
         created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
       )
     `);
-    console.log("Table created successfully.");
+    console.log("Admins table created successfully.");
+
+    console.log("Creating leads table...");
+    await pool.execute(`
+      CREATE TABLE IF NOT EXISTS leads (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        company VARCHAR(255) NOT NULL,
+        phone VARCHAR(50),
+        message TEXT NOT NULL,
+        status VARCHAR(20) DEFAULT 'unread',
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+    console.log("Leads table created successfully.");
 
     const email = "admin@gts.com";
     const plainTextPassword = "admin123";

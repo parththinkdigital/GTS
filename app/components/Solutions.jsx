@@ -158,7 +158,7 @@ export default function Solutions() {
             autoAlpha: 1,
             y: 0,
             filter: "blur(0px)",
-            duration: 0.45,
+            duration: 0.2,
             ease: "power2.out",
           },
           0,
@@ -170,11 +170,11 @@ export default function Solutions() {
               autoAlpha: 1,
               y: 0,
               filter: "blur(0px)",
-              duration: 0.625,
-              stagger: 0.07,
+              duration: 0.25,
+              stagger: 0.02,
               ease: "power3.out",
             },
-            0.08,
+            0.03,
           )
           .fromTo(
             icons,
@@ -182,11 +182,11 @@ export default function Solutions() {
             {
               scale: 1,
               opacity: 1,
-              duration: 0.29,
-              stagger: 0.0175,
+              duration: 0.15,
+              stagger: 0.005,
               ease: "back.out(1.5)",
             },
-            0.28,
+            0.1,
           );
       });
 

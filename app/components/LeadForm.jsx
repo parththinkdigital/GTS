@@ -66,15 +66,14 @@ export default function LeadForm() {
       <div className="lead-orb lead-orb-orange" />
 
       <div className="container">
-        <div className="section-header centered">
-          <div className="section-eyebrow">
-            <span className="e-dot"></span> Talk to GTS
-          </div>
-          <h2 className="section-title">Ready to modernize your financial stack?</h2>
-        </div>
-
         <div className="lead-container">
           <div className="lead-copy">
+            <div className="section-eyebrow">
+              <span className="e-dot"></span> Talk to GTS
+            </div>
+            <h2 className="section-title">
+              Ready to modernize your financial stack?
+            </h2>
             <p>
               Share a few details and our team will map the right product, implementation,
               and managed-service path for your business.
@@ -94,11 +93,6 @@ export default function LeadForm() {
                 Expert-led review
               </div>
             </div>
-
-            <button className="lead-cta" type="button" onClick={focusForm}>
-              Start the conversation
-              <ArrowRight size={15} strokeWidth={2} aria-hidden="true" />
-            </button>
           </div>
 
           <div className={`lead-form-card${submitted ? " is-submitted" : ""}`}>

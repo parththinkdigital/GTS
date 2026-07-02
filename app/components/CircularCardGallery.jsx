@@ -43,6 +43,17 @@ export default function CircularCardGallery({
 
   const cardStep = useMemo(() => currentCardWidth + cardGap, [currentCardWidth, cardGap]);
 
+  const handleScroll = (e) => {
+    if (typeof window === "undefined" || window.innerWidth >= 768) return;
+    const el = e.currentTarget;
+    const maxScrollLeft = el.scrollWidth - el.clientWidth;
+    const progress = maxScrollLeft > 0 ? el.scrollLeft / maxScrollLeft : 0;
+    const progressBar = document.querySelector(".products-progress-bar");
+    if (progressBar) {
+      progressBar.style.transform = `scaleX(${Math.min(1, Math.max(0, progress))})`;
+    }
+  };
+
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -106,68 +117,71 @@ export default function CircularCardGallery({
       });
     };
 
-    // Initial render
-    updateCards(0);
-
-    // Track instance of ScrollTrigger to force update on resize
-    let mainTween;
-
-    const handleResize = () => {
-      const w = container.clientWidth;
-      if (trackRef.current) {
-        const padding = `${w / 2 - currentCardWidth / 2}px`;
-        trackRef.current.style.paddingLeft = padding;
-        trackRef.current.style.paddingRight = padding;
-      }
-      if (mainTween && mainTween.scrollTrigger) {
-        const currentProgress = mainTween.scrollTrigger.progress;
-        updateCards(currentProgress * maxScroll);
-      }
-    };
-
-    // Listeners
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
     const ctx = gsap.context(() => {
-      const playhead = { progress: 0 };
+      const mm = gsap.matchMedia();
 
-      // Scale scroll distance by screen size so the pin doesn't reserve
-      // a huge amount of scroll space on mobile (where cards are narrower).
-      const getScrollEnd = () => {
-        const w = window.innerWidth;
-        if (w < 480) {
-          // Mobile small: reduce to ~40% of full scroll distance
-          return maxScroll * 0.42;
-        } else if (w < 768) {
-          // Mobile large: reduce to ~55%
-          return maxScroll * 0.55;
-        }
-        // Desktop: full scroll distance
-        return maxScroll;
-      };
+      // Desktop & Tablet (>= 768px): Enable scroll-driven 3D pinning gallery
+      mm.add("(min-width: 768px)", () => {
+        // Initial render layout
+        updateCards(0);
 
-      // Animate progress using a GSAP tween controlled by ScrollTrigger scrub
-      mainTween = gsap.to(playhead, {
-        progress: 1,
-        ease: "none",
-        scrollTrigger: {
-          id: "products-pin",
-          trigger: section,
-          pin: true,
-          start: "top top",
-          end: () => `+=${getScrollEnd()}`,
-          scrub: 0.8, // Smooth scrub easing
-          invalidateOnRefresh: true,
-          onUpdate: () => {
-            const currentScrollVal = playhead.progress * maxScroll;
-            updateCards(currentScrollVal);
+        let mainTween;
+
+        const handleResize = () => {
+          const w = container.clientWidth;
+          if (trackRef.current) {
+            const padding = `${w / 2 - currentCardWidth / 2}px`;
+            trackRef.current.style.paddingLeft = padding;
+            trackRef.current.style.paddingRight = padding;
           }
-        }
+          if (mainTween && mainTween.scrollTrigger) {
+            const currentProgress = mainTween.scrollTrigger.progress;
+            updateCards(currentProgress * maxScroll);
+          }
+        };
+
+        window.addEventListener("resize", handleResize);
+        handleResize();
+
+        const playhead = { progress: 0 };
+
+        mainTween = gsap.to(playhead, {
+          progress: 1,
+          ease: "none",
+          scrollTrigger: {
+            id: "products-pin",
+            trigger: section,
+            pin: true,
+            start: "top top",
+            end: () => `+=${maxScroll}`,
+            scrub: 0.8, // Smooth scrub easing
+            invalidateOnRefresh: true,
+            onUpdate: () => {
+              const currentScrollVal = playhead.progress * maxScroll;
+              updateCards(currentScrollVal);
+            }
+          }
+        });
+
+        return () => {
+          window.removeEventListener("resize", handleResize);
+          // Reset styling to ensure mobile css snaps take over cleanly
+          if (trackRef.current) {
+            trackRef.current.style.transform = "";
+            trackRef.current.style.paddingLeft = "";
+            trackRef.current.style.paddingRight = "";
+          }
+          cardsRef.current.forEach((cardEl) => {
+            if (cardEl) {
+              cardEl.style.transform = "";
+              cardEl.style.opacity = "";
+              cardEl.style.zIndex = "";
+            }
+          });
+        };
       });
 
-
-      // Animate section header fade-in when section comes into view
+      // Animate section header fade-in when section comes into view (works everywhere)
       const header = section.querySelector(".section-header");
       if (header) {
         gsap.fromTo(header,
@@ -188,7 +202,6 @@ export default function CircularCardGallery({
     }, container);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
       ctx.revert();
     };
   }, [items.length, cardStep, currentCardWidth, cardGap]);
@@ -200,6 +213,7 @@ export default function CircularCardGallery({
       ref={containerRef}
       role="region"
       aria-label="Interactive scroll-driven circular card gallery."
+      onScroll={handleScroll}
     >
       <div className="circular-card-track" ref={trackRef}>
         {items.map((item, idx) => (
