@@ -8,17 +8,22 @@ gsap.registerPlugin(useGSAP);
 
 export default function Hero() {
   const containerRef = useRef(null);
+  const videoRef = useRef(null);
 
   useGSAP(() => {
     const root = containerRef.current;
     if (!root) return;
+
+    const video = videoRef.current;
+    if (video) {
+      video.playbackRate = 0.75;
+    }
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const contentTargets = [
       ".hero-eyebrow",
       ".hero-title-line",
       ".hero p",
-      ".hero-actions",
     ];
 
     if (reduceMotion) {
@@ -41,16 +46,15 @@ export default function Hero() {
         duration: 0.8,
         stagger: 0.12,
       }, 0.25)
-      .to(".hero p", { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.6 }, 0.55)
-      .to(".hero-actions", { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.5 }, 0.7);
+      .to(".hero p", { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.6 }, 0.55);
 
   }, { scope: containerRef });
 
   return (
     <section className="hero" id="hero" ref={containerRef}>
       <div className="hero-fintech-bg" aria-hidden="true">
-        <video className="hero-bg-video" autoPlay muted loop playsInline preload="auto">
-          <source src="/videos/hero-finance-bg.mp4" type="video/mp4" />
+        <video ref={videoRef} className="hero-bg-video" autoPlay muted loop playsInline preload="auto">
+          <source src="/videos/hero-finance-bg-2.mp4" type="video/mp4" />
         </video>
       </div>
 
@@ -64,18 +68,6 @@ export default function Hero() {
           Transform financial services with intelligent customer engagement,
           digital lending workflows, and automated lifecycle management built for scale.
         </p>
-        <div className="hero-actions">
-          <a
-            href="#"
-            className="btn btn-primary"
-            onClick={(event) => {
-              event.preventDefault();
-              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            Schedule a Demo <span className="arrow">→</span>
-          </a>
-        </div>
       </div>
 
       <div className="scroll-indicator" aria-hidden="true">

@@ -20,6 +20,26 @@ export default function LeadForm() {
   const [loading, setLoading] = useState(false);
   const [formError, setFormError] = useState("");
   const nameInputRef = useRef(null);
+  const cardRef = useRef(null);
+
+  const onCardMove = (e) => {
+    const el = cardRef.current;
+    if (!el || submitted) return;
+    const rect = el.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+    const shadowX = x * -12;
+    const shadowY = y * -12;
+    el.style.setProperty('--shadow-x', `${shadowX}px`);
+    el.style.setProperty('--shadow-y', `${shadowY}px`);
+  };
+
+  const onCardLeave = () => {
+    const el = cardRef.current;
+    if (!el) return;
+    el.style.setProperty('--shadow-x', `0px`);
+    el.style.setProperty('--shadow-y', `0px`);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -95,7 +115,8 @@ export default function LeadForm() {
             </div>
           </div>
 
-          <div className={`lead-form-card${submitted ? " is-submitted" : ""}`}>
+          <div ref={cardRef} className={`lead-form-card${submitted ? " is-submitted" : ""}`} onMouseMove={onCardMove} onMouseLeave={onCardLeave}>
+            <div className="lead-form-glow" />
             <form className="lead-form-fields" onSubmit={handleSubmit}>
               <div className="lead-form-head">
                 <span>Request consultation</span>

@@ -7,9 +7,18 @@ import MagnetLines from "./MagnetLines";
 
 export default function Footer() {
   const bigTextRef = useRef(null);
+  const compactTextRef = useRef(null);
 
   const onBigTextMove = (e) => {
     const el = bigTextRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const pct = ((e.clientX - rect.left) / rect.width) * 100;
+    el.style.setProperty('--cursor-x', `${pct}%`);
+  };
+
+  const onCompactTextMove = (e) => {
+    const el = compactTextRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
     const pct = ((e.clientX - rect.left) / rect.width) * 100;
@@ -80,13 +89,13 @@ export default function Footer() {
             {/* Left side: logo, description, socials, and copyright */}
             <div className="footer-left-col">
               <a className="footer-brand-link" href="/">
-                <img alt="logo" width="30" height="30" src="/gts-logo.png" className="footer-brand-logo" />
-                <span className="footer-brand-name">GTS Finlabs</span>
+                {/* <img alt="logo" width="30" height="30" src="/gts-logo.png" className="footer-brand-logo" /> */}
+                <div ref={compactTextRef} className="footer-big-text footer-big-text--compact" onMouseMove={onCompactTextMove}>GTS Finlabs</div>
               </a>
               <p className="footer-brand-tagline">
                 Next-generation financial technology enabling banks and fintechs to deliver intelligent customer engagement and seamless digital lending experiences.
               </p>
-              
+
               {/* Circular Social Buttons directly below description */}
               <div className="footer-social-mono-row">
                 <a href="#" className="social-mono-btn" aria-label="Facebook">
@@ -114,7 +123,7 @@ export default function Footer() {
                   </svg>
                 </a>
               </div>
-              
+
               <div className="footer-copyright-text">
                 &copy; {new Date().getFullYear()} GTS Finlabs. All rights reserved.
               </div>
@@ -129,18 +138,7 @@ export default function Footer() {
                   <li><a href="#products">All Products</a></li>
                   <li><a href="#solutions">Solutions</a></li>
                   <li><a href="#services">Services</a></li>
-                  <li><a href="#impact">Impact</a></li>
-                </ul>
-              </div>
-
-              {/* Solutions Column */}
-              <div className="footer-link-group">
-                <p className="footer-group-title">Solutions</p>
-                <ul className="footer-group-list">
-                  <li><a href="#solutions">Retail Banking</a></li>
-                  <li><a href="#solutions">Credit Unions</a></li>
-                  <li><a href="#solutions">Fintech Lenders</a></li>
-                  <li><a href="#solutions">Embedded Finance</a></li>
+                  <li><a href="#impact">About Us</a></li>
                 </ul>
               </div>
 
@@ -174,7 +172,7 @@ export default function Footer() {
           </div>
 
           {/* Big brand text with cursor-following gradient */}
-          <div ref={bigTextRef} className="footer-big-text" onMouseMove={onBigTextMove}>GTS Finlabs</div>
+          {/* <div ref={bigTextRef} className="footer-big-text" onMouseMove={onBigTextMove}>GTS Finlabs</div> */}
         </div>
       </footer>
     </div>
