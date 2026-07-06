@@ -1,30 +1,29 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const navItems = [
-  { id: "hero", label: "Home" },
-  { id: "products", label: "Products" },
-  { id: "services", label: "Services" },
-  { id: "solutions", label: "Solutions" },
+  { id: "products", label: "Products", icon: "folder" },
+  { id: "services", label: "Services", icon: "faq" },
+  { id: "solutions", label: "Solutions", icon: "inbox" },
 ];
 
 const HomeIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nav-pill-icon">
     <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
     <polyline points="9 22 9 12 15 12 15 22" />
   </svg>
 );
 
 const FolderIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nav-pill-icon">
     <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z" />
   </svg>
 );
 
 const FaqIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nav-pill-icon">
     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
     <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
     <line x1="12" y1="17" x2="12.01" y2="17" />
@@ -32,7 +31,7 @@ const FaqIcon = () => (
 );
 
 const InboxIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nav-pill-icon">
     <polyline points="22 12 16 12 14 15 10 15 8 12 2 12" />
     <path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" />
   </svg>
@@ -40,45 +39,11 @@ const InboxIcon = () => (
 
 
 export default function Navbar({ activeSection }) {
-  const [blobStyle, setBlobStyle] = useState({ left: 0, right: 0, opacity: 0 });
   const [menuOpen, setMenuOpen] = useState(false);
-  const dockRef = useRef(null);
+  const [hoveredTab, setHoveredTab] = useState(null);
   const menuRef = useRef(null);
 
-  const updateBlob = useCallback((element) => {
-    if (!element || !dockRef.current) return;
-    const rect = element.getBoundingClientRect();
-    const linksContainer = dockRef.current.querySelector(".dock-links-container");
-    if (!linksContainer) return;
-    const containerRect = linksContainer.getBoundingClientRect();
-    const safeInset = 4;
-    const left = Math.max(safeInset, rect.left - containerRect.left);
-    const right = Math.max(safeInset, containerRect.right - rect.right);
-    setBlobStyle({
-      left,
-      right,
-      opacity: 1,
-    });
-  }, []);
-
-  const handleMouseEnter = (e) => updateBlob(e.currentTarget);
-  const handleMouseLeave = () => {
-    const activeEl = dockRef.current?.querySelector(".dock-link-item.active");
-    if (activeEl) updateBlob(activeEl);
-    else setBlobStyle((prev) => ({ ...prev, opacity: 0 }));
-  };
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      const activeEl = dockRef.current?.querySelector(".dock-link-item.active");
-      if (activeEl) {
-        updateBlob(activeEl);
-      } else {
-        setBlobStyle((prev) => ({ ...prev, opacity: 0 }));
-      }
-    }, 100);
-    return () => clearTimeout(timeout);
-  }, [activeSection, updateBlob]);
+  const effectiveTab = hoveredTab || activeSection;
 
   useEffect(() => {
     let tween;
@@ -117,30 +82,72 @@ export default function Navbar({ activeSection }) {
 
   return (
     <>
-      <header className="site-header">
-        <div className="container header-container">
-          <img src="/gts-logo.png" alt="GTS Finlabs" className="site-logo" />
-          <div className="header-right">
-            <a
-              href="#"
-              className="header-cta-btn"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-              }}
-            >
-              Schedule a Demo
-            </a>
-            <button
-              onClick={() => setMenuOpen((p) => !p)}
-              className="hamburger-btn"
-              aria-label="Toggle menu"
-            >
-              <span className={`hamburger-line ${menuOpen ? "open" : ""}`} />
-            </button>
+      {/* Floating pill navbar — visible at all sizes */}
+      <nav className="nav-pill">
+        {/* Logo badge */}
+        <a
+          className="nav-pill-logo"
+          href="#hero"
+          onClick={(e) => handleNavClick(e, "hero")}
+        >
+          <img src="/gts-logo.png" alt="GTS Finlabs" className="nav-pill-logo-img" />
+        </a>
+
+        {/* Tabs group: Home button + nav links */}
+        <div className="nav-pill-tabs">
+          {/* Home button */}
+          <a
+            className={`nav-pill-home-btn${effectiveTab === "hero" ? " active" : ""}`}
+            href="#hero"
+            onClick={(e) => handleNavClick(e, "hero")}
+            onMouseEnter={() => setHoveredTab("hero")}
+            onMouseLeave={() => setHoveredTab(null)}
+          >
+            <HomeIcon />
+            <span>Home</span>
+          </a>
+
+          {/* Nav links — hidden on mobile */}
+          <div className="nav-pill-links">
+            {navItems.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className={`nav-pill-link${effectiveTab === item.id ? " active" : ""}`}
+                onClick={(e) => handleNavClick(e, item.id)}
+                onMouseEnter={() => setHoveredTab(item.id)}
+                onMouseLeave={() => setHoveredTab(null)}
+              >
+                {item.icon === "folder" && <FolderIcon />}
+                {item.icon === "faq" && <FaqIcon />}
+                {item.icon === "inbox" && <InboxIcon />}
+                <span>{item.label}</span>
+              </a>
+            ))}
           </div>
         </div>
-      </header>
+
+        {/* Right side: CTA + hamburger */}
+        <div className="nav-pill-right">
+          <a
+            href="#"
+            className="nav-pill-cta"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Schedule a Demo
+          </a>
+          <button
+            onClick={() => setMenuOpen((p) => !p)}
+            className="hamburger-btn"
+            aria-label="Toggle menu"
+          >
+            <span className={`hamburger-line ${menuOpen ? "open" : ""}`} />
+          </button>
+        </div>
+      </nav>
 
       {/* Mobile menu overlay */}
       <div
@@ -161,6 +168,13 @@ export default function Navbar({ activeSection }) {
           </button>
           <img src="/gts-logo.png" alt="GTS Finlabs" className="mobile-menu-logo" />
           <nav className="mobile-nav-links">
+            <a
+              href="#hero"
+              className={activeSection === "hero" ? "active" : ""}
+              onClick={(e) => handleNavClick(e, "hero")}
+            >
+              Home
+            </a>
             {navItems.map((item) => (
               <a
                 key={item.id}
@@ -171,68 +185,27 @@ export default function Navbar({ activeSection }) {
                 {item.label}
               </a>
             ))}
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setMenuOpen(false);
+                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              style={{
+                marginTop: "12px",
+                background: "var(--brand-blue)",
+                color: "#fff",
+                padding: "12px 32px",
+                borderRadius: "9999px",
+                fontSize: "1rem",
+              }}
+            >
+              Schedule a Demo
+            </a>
           </nav>
         </div>
       </div>
-
-      {/* Desktop dock */}
-      <nav className="glass-dock" ref={dockRef} onMouseLeave={handleMouseLeave}>
-        {/* Brand Logo */}
-        <a
-          href="#hero"
-          className="dock-logo-container"
-          onClick={(e) => handleNavClick(e, "hero")}
-        >
-          <img src="/gts-logo.png" alt="GTS Finlabs" className="dock-logo" />
-        </a>
-
-        {/* Separator */}
-        <div className="dock-divider" />
-
-        {/* Navigation Links */}
-        <div className="dock-links-container">
-          <div
-            className="dock-blob"
-            style={{
-              left: `${blobStyle.left}px`,
-              right: `${blobStyle.right}px`,
-              opacity: blobStyle.opacity,
-            }}
-          />
-          {navItems.map((item) => (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              className={`dock-link-item ${activeSection === item.id ? "active" : ""}`}
-              onMouseEnter={handleMouseEnter}
-              onClick={(e) => handleNavClick(e, item.id)}
-            >
-              <div className="dock-item">
-                {item.id === "hero" && <HomeIcon />}
-                {item.id === "products" && <FolderIcon />}
-                {item.id === "services" && <FaqIcon />}
-                {item.id === "solutions" && <InboxIcon />}
-                <span>{item.label}</span>
-              </div>
-            </a>
-          ))}
-        </div>
-
-        {/* Separator */}
-        <div className="dock-divider" />
-
-        {/* CTA Button */}
-        <a
-          href="#"
-          className="dock-cta-btn"
-          onClick={(e) => {
-            e.preventDefault();
-            document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-          }}
-        >
-          Schedule a Demo
-        </a>
-      </nav>
     </>
   );
 }

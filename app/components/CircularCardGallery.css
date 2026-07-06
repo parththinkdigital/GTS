@@ -1,7 +1,8 @@
 .circular-card-gallery {
   position: relative;
   width: 100%;
-  height: 520px; /* fixed height for carousel */
+  height: 560px;
+  /* fixed height for carousel; extra height prevents box-shadow clipping */
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -34,25 +35,29 @@
 /* ─── PREMIUM PRODUCTS CARDS ─── */
 .circular-card-wrapper .card {
   background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
   border: 1px solid rgba(12, 45, 137, 0.08);
   border-radius: var(--radius-2xl);
   padding: 28px;
   height: 430px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 8px 30px rgba(12, 45, 137, 0.03);
-  transition: border-color 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10), 0 12px 28px rgba(0, 0, 0, 0.14);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease, backdrop-filter 0.4s ease;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   box-sizing: border-box;
+  will-change: backdrop-filter, transform;
+  transform: translateZ(0);
 }
 
 .circular-card-wrapper .card::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 4px;
   background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-orange) 100%);
   opacity: 0.7;
@@ -61,8 +66,7 @@
 
 .circular-card-wrapper .card:hover {
   border-color: rgba(12, 45, 137, 0.25);
-  box-shadow: 0 20px 40px rgba(12, 45, 137, 0.08), 
-              inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14), 0 20px 40px rgba(0, 0, 0, 0.20), 0 32px 56px rgba(0, 0, 0, 0.15);
   background: rgba(255, 255, 255, 0.95);
 }
 
@@ -113,8 +117,8 @@
 /* ─── PREMIUM SERVICES CARDS ─── */
 .services-grid .service-card {
   background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
   border: 1px solid rgba(12, 45, 137, 0.08);
   border-radius: var(--radius-2xl);
   padding: 36px;
@@ -123,12 +127,16 @@
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
+  will-change: backdrop-filter, transform;
+  transform: translateZ(0);
 }
 
 .services-grid .service-card::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 4px;
   background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-orange) 100%);
   opacity: 0.6;
@@ -138,8 +146,8 @@
 .services-grid .service-card:hover {
   transform: translateY(-8px);
   border-color: rgba(12, 45, 137, 0.2);
-  box-shadow: 0 24px 48px rgba(12, 45, 137, 0.06), 
-              inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 24px 48px rgba(12, 45, 137, 0.06),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
   background: rgba(255, 255, 255, 0.95);
 }
 
@@ -203,8 +211,8 @@
 
 .stat-card {
   background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
   border: 1px solid rgba(12, 45, 137, 0.08);
   border-radius: var(--radius-2xl);
   padding: 32px 24px;
@@ -212,6 +220,8 @@
   box-shadow: 0 8px 30px rgba(12, 45, 137, 0.02);
   transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease;
   position: relative;
+  will-change: backdrop-filter, transform;
+  transform: translateZ(0);
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -219,7 +229,9 @@
 .stat-card::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 4px;
   background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-orange) 100%);
   opacity: 0.6;
@@ -229,8 +241,8 @@
 .stat-card:hover {
   transform: translateY(-8px);
   border-color: rgba(12, 45, 137, 0.2);
-  box-shadow: 0 24px 48px rgba(12, 45, 137, 0.06), 
-              inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 24px 48px rgba(12, 45, 137, 0.06),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
   background: rgba(255, 255, 255, 0.95);
 }
 
@@ -313,7 +325,8 @@ footer.bold-footer {
 
 .footer-content-wrap {
   width: 100%;
-  max-width: 100%; max-width: 1280px;
+  max-width: 100%;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 32px;
   box-sizing: border-box;
@@ -363,7 +376,8 @@ footer.bold-footer {
   font-size: 0.9rem;
   color: var(--gray-500);
   line-height: 1.6;
-  max-width: 100%; max-width: 280px;
+  max-width: 100%;
+  max-width: 280px;
   margin-bottom: 24px;
 }
 
@@ -408,7 +422,7 @@ footer.bold-footer {
 
 .footer-right-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 40px;
 }
 
@@ -468,11 +482,13 @@ footer.bold-footer {
 
 /* Giant background typography at the bottom */
 .footer-large-title-wrap {
-  overflow: hidden; /* Mask to allow upward letters scroll slide */
+  overflow: hidden;
+  /* Mask to allow upward letters scroll slide */
   margin-top: 100px;
   width: 100%;
   text-align: center;
-  perspective: 800px; /* 3D perspective for flip effect */
+  perspective: 800px;
+  /* 3D perspective for flip effect */
 }
 
 .footer-large-title {
@@ -513,15 +529,16 @@ footer.bold-footer {
     grid-template-columns: 1fr;
     gap: 60px;
   }
-  
+
   .footer-right-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 40px;
   }
 
   .footer-magnet-col {
-    grid-column: span 3;
-    max-width: 100%; max-width: 320px;
+    grid-column: span 2;
+    max-width: 100%;
+    max-width: 320px;
   }
 }
 
@@ -589,104 +606,12 @@ footer.bold-footer {
   background: var(--brand-blue);
   border-color: var(--brand-blue);
   color: #fff;
-  transform: translateY(-3px) rotate(15deg);
+  transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(12, 45, 137, 0.15);
 }
 
-/* ─── PREMIUM SOLUTIONS CARDS ─── */
-.solutions-grid .solution-item {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  border: 1px solid rgba(12, 45, 137, 0.08);
-  border-radius: var(--radius-xl);
-  padding: 24px;
-  box-shadow: 0 8px 30px rgba(12, 45, 137, 0.02);
-  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease;
-  position: relative;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-.solutions-grid .solution-item::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-orange) 100%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.solutions-grid .solution-item:hover {
-  transform: translateY(-6px);
-  border-color: rgba(12, 45, 137, 0.18);
-  box-shadow: 0 20px 40px rgba(12, 45, 137, 0.06), 
-              inset 0 0 0 1px rgba(255, 255, 255, 0.6);
-  background: rgba(255, 255, 255, 0.95);
-}
-
-.solutions-grid .solution-item:hover::before {
-  opacity: 0.8;
-}
-
-.solutions-grid .solution-item .solution-icon {
-  background: rgba(12, 45, 137, 0.05);
-  border-color: rgba(12, 45, 137, 0.1);
-  color: var(--brand-blue);
-  transition: all 0.3s ease;
-}
-
-.solutions-grid .solution-item:hover .solution-icon {
-  background: var(--brand-blue);
-  color: var(--white);
-  border-color: transparent;
-  transform: scale(1.08) rotate(4deg);
-}
-
-.solutions-grid .solution-item h4 {
-  font-size: 1rem;
-  font-weight: 750;
-  color: var(--gray-900);
-  margin-bottom: 8px;
-  transition: color 0.3s ease;
-}
-
-.solutions-grid .solution-item:hover h4 {
-  color: var(--brand-blue-light);
-}
-
-.solutions-grid .solution-item p {
-  font-size: 0.82rem;
-  color: var(--gray-600);
-  line-height: 1.55;
-}
-
-/* 3D assembly helpers */
-.solutions-grid {
-  perspective: 1500px;
-  transform-style: preserve-3d;
-}
-
-.solutions-col {
-  transform-style: preserve-3d;
-}
-
-/* Horizontal card header: Icon - Heading */
-.solution-item-header {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 14px;
-}
-
-.solution-item-header .solution-icon {
-  margin-bottom: 0 !important;
-  flex-shrink: 0;
-}
-
-.solutions-grid .solution-item h4 {
-  margin-bottom: 0 !important;
+.outlined-top-btn:hover svg {
+  transform: translateY(-2px);
 }
 
 /* ─── FOOTER BIG TEXT WITH GRADIENT SWEEP ─── */
@@ -705,7 +630,27 @@ footer.bold-footer {
   user-select: none;
   transition: background 0.35s ease;
 }
+
 .footer-big-text:hover {
+  background: radial-gradient(circle at var(--cursor-x, 50%) 50%, var(--brand-orange, #F5A623) 0%, var(--brand-blue-light, #1a4bc4) 45%, var(--brand-blue, #0C2D89) 75%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Compact variant used inline with the brand logo in the footer-left-col */
+.footer-big-text--compact {
+  width: auto;
+  font-size: 1.75rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  text-align: left;
+  padding: 0;
+  display: inline;
+}
+
+.footer-big-text--compact:hover {
   background: radial-gradient(circle at var(--cursor-x, 50%) 50%, var(--brand-orange, #F5A623) 0%, var(--brand-blue-light, #1a4bc4) 45%, var(--brand-blue, #0C2D89) 75%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -717,8 +662,15 @@ footer.bold-footer {
     font-size: clamp(2.2rem, 14vw, 4rem);
     padding: 24px 0 16px;
   }
+
   .footer-big-text:hover {
     background: radial-gradient(circle at 50% 50%, var(--brand-blue, #0C2D89) 0%, var(--brand-blue, #0C2D89) 100%);
+  }
+
+  .footer-big-text--compact {
+  font-size: 1.75rem;
+    padding: 0;
+    line-height: 1.25;
   }
 }
 
@@ -726,10 +678,15 @@ footer.bold-footer {
 
 /* Responsive Overrides */
 @media (max-width: 1024px) {
-  .circular-gallery-grid { grid-template-columns: 1fr 1fr !important; }
+  .circular-gallery-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
 }
+
 @media (max-width: 768px) {
-  .circular-gallery-grid { grid-template-columns: 1fr !important; }
+  .circular-gallery-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 @media (max-width: 767px) {
