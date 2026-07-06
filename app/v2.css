@@ -2825,6 +2825,7 @@ footer {
     gap: 16px;
     max-width: 100%;
     max-width: 640px;
+    padding: 0 16px;
   }
 
   .services-section .services-grid .service-card {
@@ -3010,8 +3011,16 @@ footer {
     font-size: 1.5rem;
   }
 
+  .services-section .services-grid .service-card {
+    padding: 16px;
+  }
+
   .services-section .services-grid .service-card h3 {
     font-size: 1.05rem;
+  }
+
+  .service-card-head {
+    gap: 10px;
   }
 
   .products-section {
@@ -3225,6 +3234,11 @@ footer {
 
   .hamburger-btn {
     display: flex;
+  }
+
+  .hamburger-line::before,
+  .hamburger-line::after {
+    background: #0C2D89;
   }
 }
 
