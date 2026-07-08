@@ -34,11 +34,11 @@
   --radius-full: 9999px;
 
   /* Aptos font system */
-  --font-primary: 'Aptos', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-  --font-secondary: 'Aptos', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-  --font-heading: 'Aptos', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-  --font: 'Aptos', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-  --font-mono: 'Aptos', 'Cascadia Code', 'Fira Code', 'Consolas', 'Courier New', monospace;
+  --font-primary: 'GTS Aptos', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-secondary: 'GTS Aptos', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-heading: 'GTS Aptos', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font: 'GTS Aptos', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-mono: 'GTS Aptos', 'Cascadia Code', 'Fira Code', 'Consolas', 'Courier New', monospace;
 
   --ease-out-expo: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -340,6 +340,7 @@ html {
 }
 
 .hero-eyebrow {
+  font-family: var(--font-mono);
   color: var(--brand-blue-dim);
   font-size: 0.72rem;
   font-weight: 600;
@@ -350,10 +351,11 @@ html {
 }
 
 .hero h1 {
+  font-family: var(--font-heading);
   position: relative;
   isolation: isolate;
   font-size: clamp(3rem, 6.5vw, 5.5rem);
-  font-weight: 700;
+  font-weight: 900;
   line-height: 1.1;
   letter-spacing: -0.04em;
   color: var(--gray-300);
@@ -567,11 +569,12 @@ html {
 }
 
 .hero2-title {
+  font-family: var(--font-heading);
   margin: 0;
   color: var(--white);
   font-size: clamp(3.5rem, 6.6vw, 6.85rem);
   line-height: 1.1;
-  font-weight: 850;
+  font-weight: 900;
   letter-spacing: -0.07em;
 }
 
@@ -909,6 +912,7 @@ html {
 }
 
 .section-title {
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 4vw, 3.8rem);
   font-weight: 800;
   line-height: 1.15;
@@ -1303,6 +1307,7 @@ html {
 }
 
 .services-section .services-grid .service-card h3 {
+  font-family: var(--font-heading);
   font-size: clamp(1.35rem, 2.4vw, 2.1rem);
   font-weight: 700;
   color: var(--gray-950);
@@ -1488,7 +1493,7 @@ html {
 
 .solutions-col-header h4 {
   font-size: clamp(0.68rem, 0.74vw, 0.8rem);
-  font-weight: 800;
+  font-weight: 700;
   color: var(--brand-blue);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1585,8 +1590,9 @@ html {
 }
 
 .solution-item h4 {
+  font-family: var(--font-heading);
   font-size: clamp(0.76rem, 0.82vw, 0.9rem);
-  font-weight: 800;
+  font-weight: 700;
   color: var(--gray-950);
   margin: 0;
   letter-spacing: -0.01em;
@@ -1945,16 +1951,18 @@ html {
 }
 
 .lead-form-head span {
+  font-family: var(--font-mono);
   font-size: 0.68rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--brand-orange);
 }
 
 .lead-form-head strong {
+  font-family: var(--font-heading);
   font-size: 1.05rem;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--gray-950);
   letter-spacing: -0.03em;
 }
@@ -2036,11 +2044,12 @@ html {
 }
 
 .lead-field {
+  font-family: var(--font-mono);
   display: grid;
   gap: 6px;
   color: var(--brand-blue);
   font-size: 0.65rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -2136,7 +2145,7 @@ html {
   color: var(--white);
   font-size: 0.85rem;
   line-height: 1.2;
-  font-weight: 900;
+  font-weight: 700;
   cursor: pointer;
   box-shadow: 0 14px 32px rgba(12, 45, 137, 0.18);
   transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 240ms ease, filter 220ms ease, background-position 400ms ease;
@@ -2194,7 +2203,7 @@ html {
   background: var(--brand-orange);
   color: var(--white);
   font-size: 0.8rem;
-  font-weight: 900;
+  font-weight: 700;
   box-shadow: 0 14px 30px rgba(245, 166, 35, 0.24);
 }
 
@@ -2204,6 +2213,7 @@ html {
 }
 
 .lead-success h3 {
+  font-family: var(--font-heading);
   margin: 0;
   color: var(--gray-950);
   font-size: clamp(1.3rem, 2.5vw, 1.8rem);

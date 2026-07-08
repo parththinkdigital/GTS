@@ -95,8 +95,9 @@
 }
 
 .circular-card-wrapper .card h3 {
+  font-family: var(--font-heading);
   font-size: 1.1rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--gray-900);
   margin: 0 0 10px 0;
   line-height: 1.35;
@@ -162,7 +163,7 @@
 
 .services-grid .service-card .num {
   font-size: 3.2rem;
-  font-weight: 850;
+  font-weight: 900;
   color: var(--brand-blue);
   opacity: 0.08;
   transition: opacity 0.4s ease, color 0.4s ease;
@@ -174,8 +175,9 @@
 }
 
 .services-grid .service-card h3 {
+  font-family: var(--font-heading);
   font-size: 1.35rem;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--gray-900);
   margin-bottom: 12px;
   transition: color 0.3s ease;
@@ -257,7 +259,7 @@
 
 .stat-number {
   font-size: 3.2rem;
-  font-weight: 850;
+  font-weight: 900;
   color: var(--brand-blue);
   line-height: 1.2;
   margin-bottom: 8px;
@@ -269,7 +271,7 @@
 
 .stat-label {
   font-size: 1rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--gray-900);
   margin-bottom: 8px;
 }
@@ -370,8 +372,9 @@ footer.bold-footer {
 }
 
 .footer-brand-name {
+  font-family: var(--font-heading);
   font-size: 1.25rem;
-  font-weight: 750;
+  font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--gray-900);
 }
@@ -443,7 +446,7 @@ footer.bold-footer {
 .footer-group-title {
   color: var(--gray-800);
   font-size: 0.82rem;
-  font-weight: 750;
+  font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   margin-bottom: 24px;
@@ -496,6 +499,7 @@ footer.bold-footer {
 }
 
 .footer-large-title {
+  font-family: var(--font-heading);
   width: 100%;
   margin: 0;
   text-align: center;
@@ -620,6 +624,7 @@ footer.bold-footer {
 
 /* ─── FOOTER BIG TEXT WITH GRADIENT SWEEP ─── */
 .footer-big-text {
+  font-family: var(--font-heading);
   width: 100%;
   font-size: clamp(3rem, 12vw, 10rem);
   font-weight: 800;
@@ -646,7 +651,7 @@ footer.bold-footer {
 .footer-big-text--compact {
   width: auto;
   font-size: 1.75rem;
-  font-weight: 750;
+  font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.25;
   text-align: left;
