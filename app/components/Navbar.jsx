@@ -18,22 +18,26 @@ const HomeIcon = () => (
 
 const FolderIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nav-pill-icon">
-    <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z" />
+    <rect x="3" y="3" width="7" height="9" rx="1" />
+    <rect x="14" y="3" width="7" height="5" rx="1" />
+    <rect x="14" y="12" width="7" height="9" rx="1" />
+    <rect x="3" y="16" width="7" height="5" rx="1" />
   </svg>
 );
 
 const FaqIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nav-pill-icon">
-    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-    <line x1="12" y1="17" x2="12.01" y2="17" />
+    <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+    <path d="M10 11h4v2h-4z" fill="currentColor" stroke="none" />
   </svg>
 );
 
 const InboxIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nav-pill-icon">
-    <polyline points="22 12 16 12 14 15 10 15 8 12 2 12" />
-    <path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" />
+    <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.9 1.2 1.5 1.5 2.5" />
+    <path d="M9 18h6" />
+    <path d="M10 22h4" />
   </svg>
 );
 
@@ -90,7 +94,7 @@ export default function Navbar({ activeSection }) {
           href="#hero"
           onClick={(e) => handleNavClick(e, "hero")}
         >
-          <img src="/gts-logo.png" alt="GTS Finlabs" className="nav-pill-logo-img" />
+          <img src="/gts-finlabs-logo-2.png" alt="GTS Finlabs" className="nav-pill-logo-img" />
         </a>
 
         {/* Tabs group: Home button + nav links */}
@@ -166,7 +170,7 @@ export default function Navbar({ activeSection }) {
               <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
           </button>
-          <img src="/gts-logo.png" alt="GTS Finlabs" className="mobile-menu-logo" />
+          <img src="/gts-finlabs-logo-2.png" alt="GTS Finlabs" className="mobile-menu-logo" />
           <nav className="mobile-nav-links">
             <a
               href="#hero"

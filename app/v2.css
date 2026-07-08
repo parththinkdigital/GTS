@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap");
-
 * {
   margin: 0;
   padding: 0;
@@ -34,8 +32,14 @@
   --radius-xl: 20px;
   --radius-2xl: 28px;
   --radius-full: 9999px;
-  --font: 'Aptos', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'DM Mono', monospace;
+
+  /* Aptos font system */
+  --font-primary: 'Aptos', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-secondary: 'Aptos', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-heading: 'Aptos', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font: 'Aptos', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-mono: 'Aptos', 'Cascadia Code', 'Fira Code', 'Consolas', 'Courier New', monospace;
+
   --ease-out-expo: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
@@ -71,7 +75,7 @@ html {
   transform: translateX(-50%);
   width: min(84%, 1160px);
   height: 60px;
-  border-radius: 999px;
+  border-radius: 20px;
   background: rgba(255, 255, 255, 0.93);
   border: 1px solid rgba(255, 255, 255, 0.55);
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.16), 0 2px 8px rgba(0, 0, 0, 0.04);
@@ -94,20 +98,18 @@ html {
   margin-right: var(--navbar-edge-gap);
 }
 
-/* Logo badge — small rounded pill container */
+/* Logo badge — no background pill */
 .nav-pill-logo {
   display: flex;
   align-items: center;
-  padding: 4px 10px 4px 8px;
-  border-radius: 999px;
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 0;
+  margin-left: 24px;
   flex-shrink: 0;
   text-decoration: none;
 }
 
 .nav-pill-logo-img {
-  height: 28px;
+  height: 40px;
   width: auto;
   display: block;
   object-fit: contain;
@@ -203,6 +205,7 @@ html {
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-right: 16px;
 }
 
 /* CTA button */
@@ -351,7 +354,7 @@ html {
   isolation: isolate;
   font-size: clamp(3rem, 6.5vw, 5.5rem);
   font-weight: 700;
-  line-height: 0.95;
+  line-height: 1.1;
   letter-spacing: -0.04em;
   color: var(--gray-300);
   margin-bottom: 24px;
@@ -567,7 +570,7 @@ html {
   margin: 0;
   color: var(--white);
   font-size: clamp(3.5rem, 6.6vw, 6.85rem);
-  line-height: 0.92;
+  line-height: 1.1;
   font-weight: 850;
   letter-spacing: -0.07em;
 }
@@ -676,7 +679,7 @@ html {
 .hero2-stat strong {
   color: var(--white);
   font-size: 1.2rem;
-  line-height: 1;
+  line-height: 1.2;
   letter-spacing: -0.03em;
 }
 
@@ -862,10 +865,12 @@ html {
 }
 
 .section-header {
+  position: relative;
+  z-index: 999;
   width: min(100%, 1180px);
   margin: 0 auto;
-  margin-bottom: 28px;
-  padding: 0 32px;
+  margin-bottom: 56px;
+  padding: 0 32px 16px;
 }
 
 .section-header.centered {
@@ -906,12 +911,13 @@ html {
 .section-title {
   font-size: clamp(2rem, 4vw, 3.8rem);
   font-weight: 800;
-  line-height: 1.04;
+  line-height: 1.15;
   letter-spacing: -0.04em;
   color: var(--gray-950);
   max-width: 100%;
   max-width: 780px;
   margin: 0;
+  overflow: visible;
 }
 
 .section-desc {
@@ -1277,7 +1283,7 @@ html {
   font-weight: 800;
   color: var(--brand-blue-dim);
   opacity: 1;
-  line-height: 1;
+  line-height: 1.2;
   letter-spacing: -0.04em;
   transition: opacity 320ms ease, color 320ms ease, transform 320ms var(--ease-out-expo);
 }
@@ -1465,7 +1471,7 @@ html {
   backdrop-filter: blur(10px) saturate(1.25);
   -webkit-backdrop-filter: blur(10px) saturate(1.25);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   will-change: backdrop-filter, transform;
   transform: translateZ(0);
 }
@@ -1475,7 +1481,7 @@ html {
   font-weight: 800;
   color: var(--brand-orange);
   opacity: 0.88;
-  line-height: 1;
+  line-height: 1.2;
   letter-spacing: -0.04em;
   margin-bottom: 6px;
 }
@@ -1556,13 +1562,15 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--brand-orange);
+  color: #ffffff;
   transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), color 240ms ease, background-color 260ms ease, border-color 260ms ease, box-shadow 320ms ease;
 }
 
 .solution-icon svg {
   width: clamp(15px, 1.25vw, 18px);
   height: clamp(15px, 1.25vw, 18px);
+  fill: #ffffff;
+  stroke: none;
   transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -1608,16 +1616,19 @@ html {
 }
 
 .clients-header {
+  position: relative;
+  z-index: 999;
   text-align: center;
   max-width: 100%;
   max-width: 600px;
   margin: 0 auto 56px;
+  padding-bottom: 12px;
 }
 
 .clients-header h2 {
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 700;
-  line-height: 1.08;
+  line-height: 1.15;
   letter-spacing: -0.03em;
   color: var(--gray-950);
   margin-bottom: 12px;
@@ -1783,8 +1794,9 @@ html {
 .lead-copy .section-title {
   max-width: 560px;
   font-size: clamp(2.25rem, 4vw, 4.2rem);
-  line-height: 0.98;
+  line-height: 1.15;
   letter-spacing: -0.06em;
+  padding-bottom: 8px;
 }
 
 .lead-copy p {
@@ -1838,6 +1850,8 @@ html {
 .lead-proof-chip svg {
   color: var(--brand-orange);
   flex-shrink: 0;
+  fill: currentColor;
+  stroke: none;
 }
 
 @keyframes lead-chip-in {
@@ -2047,6 +2061,9 @@ html {
   flex-shrink: 0;
   color: var(--brand-orange);
   opacity: 0.65;
+  fill: currentColor;
+  stroke: none;
+  display: block;
   transition: opacity 220ms ease;
 }
 
@@ -2064,7 +2081,15 @@ html {
 
 .lead-field-control-textarea {
   align-items: flex-start;
-  padding-top: 10px;
+  padding-top: 12px;
+}
+
+.lead-field-control-textarea .icon-wrap {
+  display: flex;
+  align-items: center;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 
 .lead-field-control input,
@@ -2080,6 +2105,10 @@ html {
   text-transform: none;
   padding: 12px 0;
   outline: none;
+}
+
+.lead-field-control-textarea textarea {
+  padding-top: 0;
 }
 
 .lead-field-control textarea {
@@ -2100,12 +2129,13 @@ html {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
+  gap: 8px;
   background: linear-gradient(135deg, var(--brand-blue), var(--brand-blue-light));
   background-size: 200% 200%;
   background-position: 0% 50%;
   color: var(--white);
   font-size: 0.85rem;
+  line-height: 1.2;
   font-weight: 900;
   cursor: pointer;
   box-shadow: 0 14px 32px rgba(12, 45, 137, 0.18);
@@ -2127,7 +2157,11 @@ html {
 }
 
 .lead-submit svg {
-  color: var(--brand-orange);
+  fill: currentColor;
+  stroke: none;
+  display: block;
+  flex-shrink: 0;
+  transform: translateY(0.5px);
 }
 
 .lead-submit:active {
@@ -2162,6 +2196,11 @@ html {
   font-size: 0.8rem;
   font-weight: 900;
   box-shadow: 0 14px 30px rgba(245, 166, 35, 0.24);
+}
+
+.lead-success-mark svg {
+  fill: currentColor;
+  stroke: none;
 }
 
 .lead-success h3 {
@@ -2358,7 +2397,8 @@ footer {
   }
 
   .solutions-section .section-header {
-    margin-bottom: clamp(18px, 2.4vw, 30px);
+    margin-bottom: clamp(30px, 3.2vw, 44px);
+    padding-bottom: 12px;
   }
 
   .solutions-grid {
@@ -2511,7 +2551,8 @@ footer {
   }
 
   .solutions-section .section-header {
-    margin-bottom: 32px;
+    margin-bottom: 44px;
+    padding-bottom: 12px;
   }
 
   .solutions-grid::before,
@@ -2616,7 +2657,7 @@ footer {
 
   .hero2-title {
     font-size: clamp(2.5rem, 13vw, 3.8rem);
-    line-height: 0.96;
+    line-height: 1.1;
   }
 
   .hero2-copy-block {
@@ -2755,7 +2796,8 @@ footer {
   }
 
   .products-section .section-header {
-    margin-bottom: 16px;
+    margin-bottom: 44px;
+    padding-bottom: 12px;
   }
 
   .products-gallery-container {
@@ -2797,7 +2839,8 @@ footer {
   }
 
   .section-header {
-    margin-bottom: 36px;
+    margin-bottom: 48px;
+    padding-bottom: 12px;
     text-align: center;
   }
 
@@ -2899,7 +2942,7 @@ footer {
   .services-section .services-grid .service-card .num {
     font-size: 2rem;
     opacity: 1;
-    color: var(--brand-orange);
+  color: #ffffff;
   }
 
   .solutions-grid {
@@ -2946,7 +2989,7 @@ footer {
 
   .lead-copy .section-title {
     font-size: clamp(2.15rem, 10vw, 3rem);
-    line-height: 1.02;
+    line-height: 1.15;
   }
 
   .lead-copy p {
@@ -3213,11 +3256,12 @@ footer {
   }
 
   .nav-pill-logo {
-    padding: 3px 8px 3px 6px;
+    padding: 0;
+    margin-left: 16px;
   }
 
   .nav-pill-logo-img {
-    height: 24px;
+    height: 32px;
   }
 
   .nav-pill-home-btn,
@@ -3228,6 +3272,7 @@ footer {
 
   .nav-pill-right {
     margin-left: auto;
+    margin-right: 16px;
     display: flex;
     align-items: center;
   }

@@ -59,7 +59,6 @@ export default function Hero() {
       </div>
 
       <div className="hero-grid">
-        <div className="hero-eyebrow">AI-led fintech infrastructure</div>
         <h1 className="hero-title">
           <span className="hero-title-line">Powering Smarter</span>
           <span className="hero-title-line accent">Financial Journeys</span>
