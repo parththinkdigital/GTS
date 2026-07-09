@@ -45,9 +45,26 @@ const InboxIcon = () => (
 export default function Navbar({ activeSection }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [hoveredTab, setHoveredTab] = useState(null);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
   const menuRef = useRef(null);
 
   const effectiveTab = hoveredTab || activeSection;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     let tween;
@@ -87,7 +104,7 @@ export default function Navbar({ activeSection }) {
   return (
     <>
       {/* Floating pill navbar — visible at all sizes */}
-      <nav className="nav-pill">
+      <nav className={`nav-pill ${isVisible ? "visible" : "hidden"}`}>
         {/* Logo badge */}
         <a
           className="nav-pill-logo"
