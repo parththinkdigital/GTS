@@ -209,7 +209,7 @@ export default function Solutions() {
           <div className="section-eyebrow">
             <span className="e-dot"></span> Our Solutions
           </div>
-          <h2 className="section-title">
+          <h2 className="section-title" style={{ background: 'linear-gradient(135deg, #7A9FE8, #0C2D89, #0a1a4a)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
             End-to-End Solutions for
             <br />
             Every Stage of Credit
@@ -226,7 +226,7 @@ export default function Solutions() {
             <div className="solution-item glass-hover">
               <div className="solution-item-header">
                 <div className="solution-icon">
-                  <Milestone size={18} strokeWidth={1.7} />
+                  <Milestone size={18} />
                 </div>
                 <h4>Seamless Customer Journey</h4>
               </div>
@@ -239,7 +239,7 @@ export default function Solutions() {
             <div className="solution-item glass-hover">
               <div className="solution-item-header">
                 <div className="solution-icon">
-                  <Magnet size={18} strokeWidth={1.7} />
+                  <Magnet size={18} />
                 </div>
                 <h4>Customer Acquisition</h4>
               </div>
@@ -252,7 +252,7 @@ export default function Solutions() {
             <div className="solution-item glass-hover">
               <div className="solution-item-header">
                 <div className="solution-icon">
-                  <UserCheck size={18} strokeWidth={1.7} />
+                  <UserCheck size={18} />
                 </div>
                 <h4>Digital Onboarding and LOS</h4>
               </div>
@@ -265,7 +265,7 @@ export default function Solutions() {
             <div className="solution-item glass-hover">
               <div className="solution-item-header">
                 <div className="solution-icon">
-                  <Workflow size={18} strokeWidth={1.7} />
+                  <Workflow size={18} />
                 </div>
                 <h4>Business Rule Engine</h4>
               </div>
@@ -285,7 +285,7 @@ export default function Solutions() {
             <div className="solution-item glass-hover">
               <div className="solution-item-header">
                 <div className="solution-icon">
-                  <Layers size={18} strokeWidth={1.7} />
+                  <Layers size={18} />
                 </div>
                 <h4>Alternative Credit Modelling</h4>
               </div>
@@ -298,7 +298,7 @@ export default function Solutions() {
             <div className="solution-item glass-hover">
               <div className="solution-item-header">
                 <div className="solution-icon">
-                  <Briefcase size={18} strokeWidth={1.7} />
+                  <Briefcase size={18} />
                 </div>
                 <h4>Comprehensive LMS</h4>
               </div>
@@ -311,7 +311,7 @@ export default function Solutions() {
             <div className="solution-item glass-hover">
               <div className="solution-item-header">
                 <div className="solution-icon">
-                  <Coins size={18} strokeWidth={1.7} />
+                  <Coins size={18} />
                 </div>
                 <h4>Digital Debt Collection</h4>
               </div>
@@ -324,7 +324,7 @@ export default function Solutions() {
             <div className="solution-item glass-hover">
               <div className="solution-item-header">
                 <div className="solution-icon">
-                  <BrainCircuit size={18} strokeWidth={1.7} />
+                  <BrainCircuit size={18} />
                 </div>
                 <h4>Intelligent Engagement</h4>
               </div>
@@ -344,7 +344,7 @@ export default function Solutions() {
             <div className="solution-item glass-hover">
               <div className="solution-item-header">
                 <div className="solution-icon">
-                  <LayoutTemplate size={18} strokeWidth={1.7} />
+                  <LayoutTemplate size={18} />
                 </div>
                 <h4>Digital Content Management</h4>
               </div>
@@ -357,7 +357,7 @@ export default function Solutions() {
             <div className="solution-item glass-hover">
               <div className="solution-item-header">
                 <div className="solution-icon">
-                  <MessagesSquare size={18} strokeWidth={1.7} />
+                  <MessagesSquare size={18} />
                 </div>
                 <h4>CPaaS</h4>
               </div>
