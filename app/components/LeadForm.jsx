@@ -5,7 +5,7 @@ import {
   ArrowRight,
   Building2,
   CheckCircle2,
-  Clock3,
+  Zap,
   Mail,
   MessageSquareText,
   Phone,
@@ -105,7 +105,7 @@ export default function LeadForm() {
                 Secure discovery
               </div>
               <div className="lead-proof-chip">
-                <Clock3 size={15} />
+                <Zap size={15} />
                 Fast follow-up
               </div>
               <div className="lead-proof-chip">
