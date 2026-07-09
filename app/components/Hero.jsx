@@ -53,8 +53,8 @@ export default function Hero() {
   return (
     <section className="hero" id="hero" ref={containerRef}>
       <div className="hero-fintech-bg" aria-hidden="true">
-        <video ref={videoRef} className="hero-bg-video" autoPlay muted loop playsInline preload="auto">
-          <source src="/videos/hero-finance-bg-2.mp4" type="video/mp4" />
+        <video ref={videoRef} className="hero-bg-video" autoPlay muted loop playsInline preload="auto" style={{ transform: 'scaleX(-1)' }}>
+          <source src="/videos/hero-2.mp4" type="video/mp4" />
         </video>
       </div>
 
