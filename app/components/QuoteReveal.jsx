@@ -59,7 +59,7 @@ export default function QuoteReveal() {
       });
 
       // Mobile / Tablet Portrait: Smooth scroll entry reveal
-      media.add("(max-width: 768px)", () => {
+      media.add("(max-width: 900px)", () => {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: section,

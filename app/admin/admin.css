@@ -551,7 +551,7 @@
 }
 
 /* ─── MOBILE RESPONSIVE ─── */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .admin-main {
     padding: 24px 16px;
   }

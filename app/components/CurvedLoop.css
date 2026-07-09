@@ -24,7 +24,7 @@
   line-height: 1;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .curved-loop-jacket {
     height: 120px;
     margin-top: 10px;

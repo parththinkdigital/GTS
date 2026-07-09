@@ -62,7 +62,7 @@
   letter-spacing: 0.1em;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .quote-reveal-section {
     height: auto;
     padding: 100px 0;

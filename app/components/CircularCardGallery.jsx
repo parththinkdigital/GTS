@@ -27,9 +27,9 @@ export default function CircularCardGallery({
       const w = window.innerWidth;
       if (w < 480) {
         setCurrentCardWidth(275);
-      } else if (w < 768) {
+      } else if (w < 900) {
         setCurrentCardWidth(295);
-      } else if (w < 1024) {
+      } else if (w < 1200) {
         setCurrentCardWidth(310);
       } else {
         setCurrentCardWidth(cardWidth); // 330
@@ -44,7 +44,7 @@ export default function CircularCardGallery({
   const cardStep = useMemo(() => currentCardWidth + cardGap, [currentCardWidth, cardGap]);
 
   const handleScroll = (e) => {
-    if (typeof window === "undefined" || window.innerWidth >= 768) return;
+    if (typeof window === "undefined" || window.innerWidth >= 900) return;
     const el = e.currentTarget;
     const maxScrollLeft = el.scrollWidth - el.clientWidth;
     const progress = maxScrollLeft > 0 ? el.scrollLeft / maxScrollLeft : 0;
@@ -121,7 +121,7 @@ export default function CircularCardGallery({
       const mm = gsap.matchMedia();
 
       // Desktop & Tablet (>= 768px): Enable scroll-driven 3D pinning gallery
-      mm.add("(min-width: 768px)", () => {
+      mm.add("(min-width: 900px)", () => {
         // Initial render layout
         updateCards(0);
 

@@ -27,26 +27,25 @@ export default function Hero() {
     ];
 
     if (reduceMotion) {
-      gsap.set(contentTargets, { autoAlpha: 1, y: 0, filter: "blur(0px)" });
+      gsap.set(contentTargets, { autoAlpha: 1, y: 0 });
       gsap.set(".hero-fintech-bg", { autoAlpha: 1 });
       return;
     }
 
-    gsap.set(contentTargets, { autoAlpha: 0, y: 24, filter: "blur(8px)" });
+    gsap.set(contentTargets, { autoAlpha: 0, y: 24 });
     gsap.set(".hero-fintech-bg", { autoAlpha: 0 });
 
     const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
     intro
       .to(".hero-fintech-bg", { autoAlpha: 1, duration: 1.0 })
-      .to(".hero-eyebrow", { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.5 }, 0.15)
+      .to(".hero-eyebrow", { autoAlpha: 1, y: 0, duration: 0.5 }, 0.15)
       .to(".hero-title-line", {
         autoAlpha: 1,
         y: 0,
-        filter: "blur(0px)",
         duration: 0.8,
         stagger: 0.12,
       }, 0.25)
-      .to(".hero p", { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.6 }, 0.55);
+      .to(".hero p", { autoAlpha: 1, y: 0, duration: 0.6 }, 0.55);
 
   }, { scope: containerRef });
 
