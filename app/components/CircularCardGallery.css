@@ -677,7 +677,7 @@ footer.bold-footer {
   }
 
   .footer-big-text--compact {
-  font-size: 1.75rem;
+    nt-size: 1.75rem;
     padding: 0;
     line-height: 1.25;
   }
