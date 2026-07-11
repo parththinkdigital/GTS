@@ -45,26 +45,9 @@ const InboxIcon = () => (
 export default function Navbar({ activeSection }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [hoveredTab, setHoveredTab] = useState(null);
-  const [isVisible, setIsVisible] = useState(true);
-  const lastScrollY = useRef(0);
   const menuRef = useRef(null);
 
   const effectiveTab = hoveredTab || activeSection;
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
-      }
-      lastScrollY.current = currentScrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     let tween;
@@ -104,16 +87,18 @@ export default function Navbar({ activeSection }) {
   return (
     <>
       {/* Floating pill navbar — visible at all sizes */}
-      <nav className={`nav-pill ${isVisible ? "visible" : "hidden"}`}>
-        {/* Logo badge */}
+      <div className="navbar-shell">
+        {/* Logo — sits outside the pill on the dark hero background */}
         <a
           className="nav-pill-logo"
           href="#hero"
           onClick={(e) => handleNavClick(e, "hero")}
         >
-          <img src="/gts-finlabs-logo-2.png" alt="GTS Finlabs" className="nav-pill-logo-img" />
+          <img src="/gts.png" alt="GTS Finlabs" className="nav-pill-logo-img nav-pill-logo-img--desktop" />
+          <img src="/gts-finlabs-logo-2.png" alt="GTS Finlabs" className="nav-pill-logo-img nav-pill-logo-img--mobile" />
         </a>
 
+        <nav className="nav-pill">
         {/* Tabs group: Home button + nav links */}
         <div className="nav-pill-tabs">
           {/* Home button */}
@@ -169,6 +154,7 @@ export default function Navbar({ activeSection }) {
           </button>
         </div>
       </nav>
+      </div>
 
       {/* Mobile menu overlay */}
       <div
@@ -177,17 +163,7 @@ export default function Navbar({ activeSection }) {
         style={{ pointerEvents: menuOpen ? "auto" : "none" }}
       >
         <div className="mobile-menu-inner">
-          <button
-            onClick={() => setMenuOpen(false)}
-            className="mobile-close"
-            aria-label="Close menu"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" width="20" height="20">
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
-          <img src="/gts-finlabs-logo-2.png" alt="GTS Finlabs" className="mobile-menu-logo" />
+          <img src="/gts.png" alt="GTS Finlabs" className="mobile-menu-logo" />
           <nav className="mobile-nav-links">
             <a
               href="#hero"
