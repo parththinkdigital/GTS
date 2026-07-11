@@ -2,23 +2,14 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import MagnetLines from "./MagnetLines";
+
 
 
 export default function Footer() {
   const bigTextRef = useRef(null);
-  const compactTextRef = useRef(null);
 
   const onBigTextMove = (e) => {
     const el = bigTextRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const pct = ((e.clientX - rect.left) / rect.width) * 100;
-    el.style.setProperty('--cursor-x', `${pct}%`);
-  };
-
-  const onCompactTextMove = (e) => {
-    const el = compactTextRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
     const pct = ((e.clientX - rect.left) / rect.width) * 100;
@@ -44,9 +35,9 @@ export default function Footer() {
 
     const leftCol = footer.querySelector(".footer-left-col");
     const rightGrid = footer.querySelector(".footer-right-grid");
-    const magnetCol = footer.querySelector(".footer-magnet-col");
+    const logoCol = footer.querySelector(".footer-gradient-logo-col");
     const ctx = gsap.context(() => {
-      gsap.fromTo([leftCol, rightGrid, magnetCol].filter(Boolean),
+      gsap.fromTo([leftCol, rightGrid, logoCol].filter(Boolean),
         { opacity: 0, y: 30 },
         {
           opacity: 1,
@@ -90,7 +81,7 @@ export default function Footer() {
             <div className="footer-left-col">
               <a className="footer-brand-link" href="/">
                 {/* <img alt="logo" width="30" height="30" src="/gts-logo.png" className="footer-brand-logo" /> */}
-                <div ref={compactTextRef} className="footer-big-text footer-big-text--compact" onMouseMove={onCompactTextMove}>GTS Finlabs</div>
+                <img src="/gts-finlabs-logo-2.png" alt="GTS Finlabs" className="footer-brand-logo" />
               </a>
               <p className="footer-brand-tagline">
                 Next-generation financial technology enabling banks and fintechs to deliver intelligent customer engagement and seamless digital lending experiences.
@@ -152,27 +143,12 @@ export default function Footer() {
                 </ul>
               </div>
             </div>
-
-            {/* Right side: Standalone MagnetLines Grid */}
-            <div className="footer-magnet-col">
-              <p className="footer-group-title">Field Matrix</p>
-              <div className="footer-magnet-sandbox">
-                <MagnetLines
-                  rows={10}
-                  columns={15}
-                  containerSize="100%"
-                  lineColor="var(--brand-blue, #0C2D89)"
-                  lineWidth="2px"
-                  lineHeight="14px"
-                  baseAngle={-20}
-                  style={{ height: "auto", aspectRatio: "1.5 / 1" }}
-                />
-              </div>
-            </div>
           </div>
 
-          {/* Big brand text with cursor-following gradient */}
-          {/* <div ref={bigTextRef} className="footer-big-text" onMouseMove={onBigTextMove}>GTS Finlabs</div> */}
+          {/* Right side: Gradient Logo — absolute positioned */}
+          <div className="footer-gradient-logo-col">
+            <div ref={bigTextRef} className="footer-big-text" onMouseMove={onBigTextMove}>GTS Finlabs</div>
+          </div>
         </div>
       </footer>
     </div>

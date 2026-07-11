@@ -5,16 +5,11 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
-  BrainCircuit,
   Briefcase,
   Coins,
   Layers,
   LayoutTemplate,
   Magnet,
-  MessagesSquare,
-  Milestone,
-  UserCheck,
-  Workflow,
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -226,7 +221,7 @@ export default function Solutions() {
             <div className="solution-item glass-hover">
               <div className="solution-item-header">
                 <div className="solution-icon">
-                  <Milestone size={18} />
+                  <img src="/icons/SeamlessCustomerJourney.png" alt="Seamless Customer Journey" width="18" height="18" />
                 </div>
                 <h4>Seamless Customer Journey</h4>
               </div>
@@ -252,7 +247,7 @@ export default function Solutions() {
             <div className="solution-item glass-hover">
               <div className="solution-item-header">
                 <div className="solution-icon">
-                  <UserCheck size={18} />
+                  <img src="/icons/digitalonboarding.png" alt="Digital Onboarding" width="18" height="18" />
                 </div>
                 <h4>Digital Onboarding and LOS</h4>
               </div>
@@ -265,7 +260,7 @@ export default function Solutions() {
             <div className="solution-item glass-hover">
               <div className="solution-item-header">
                 <div className="solution-icon">
-                  <Workflow size={18} />
+                  <img src="/icons/businessruleengine.png" alt="Business Rule Engine" width="18" height="18" />
                 </div>
                 <h4>Business Rule Engine</h4>
               </div>
@@ -324,7 +319,7 @@ export default function Solutions() {
             <div className="solution-item glass-hover">
               <div className="solution-item-header">
                 <div className="solution-icon">
-                  <BrainCircuit size={18} />
+                  <img src="/icons/intelligentenagement.png" alt="Intelligent Engagement" width="18" height="18" />
                 </div>
                 <h4>Intelligent Engagement</h4>
               </div>
@@ -357,7 +352,7 @@ export default function Solutions() {
             <div className="solution-item glass-hover">
               <div className="solution-item-header">
                 <div className="solution-icon">
-                  <MessagesSquare size={18} />
+                  <img src="/icons/cpaas.png" alt="CPaaS" width="18" height="18" />
                 </div>
                 <h4>CPaaS</h4>
               </div>

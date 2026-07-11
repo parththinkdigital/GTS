@@ -67,13 +67,25 @@ html {
 }
 
 /* ─── FLOATING PILL NAVBAR ─── */
-.nav-pill {
-  --navbar-edge-gap: 36px;
+.navbar-shell {
   position: fixed;
   top: 16px;
   left: 50%;
   transform: translateX(-50%);
   width: min(84%, 1160px);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 1000;
+}
+
+.nav-pill {
+  --navbar-edge-gap: 36px;
+  position: relative;
+  flex: 0 1 auto;
+  width: fit-content;
   height: 60px;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.93);
@@ -81,22 +93,12 @@ html {
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.16), 0 2px 8px rgba(0, 0, 0, 0.04);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 0;
   padding: 0 8px;
   z-index: 1000;
   white-space: nowrap;
   isolation: isolate;
-  transition: transform 0.3s ease;
-}
-
-/* Nav visibility states */
-.nav-pill.visible {
-  transform: translate(-50%, 0);
-}
-
-.nav-pill.hidden {
-  transform: translate(-50%, -150%);
 }
 
 /* Tabs wrapper — centers the home button + nav links as a group */
@@ -104,8 +106,7 @@ html {
   display: flex;
   align-items: center;
   gap: 18px;
-  margin-left: var(--navbar-edge-gap);
-  margin-right: var(--navbar-edge-gap);
+  margin: 0 auto;
 }
 
 /* Logo badge — no background pill */
@@ -113,7 +114,8 @@ html {
   display: flex;
   align-items: center;
   padding: 0;
-  margin-left: 24px;
+  margin-right: 16px;
+  margin-left: 0;
   flex-shrink: 0;
   text-decoration: none;
 }
@@ -123,6 +125,7 @@ html {
   width: auto;
   display: block;
   object-fit: contain;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.25));
 }
 
 /* Home button — unfilled default, fills blue on hover/active */
@@ -215,6 +218,7 @@ html {
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-left: 48px;
   margin-right: 16px;
 }
 
@@ -1600,7 +1604,7 @@ html {
 .solution-icon img {
   width: 18px;
   height: 18px;
-  opacity: 0.5;
+  filter: brightness(0) invert(1);
 }
 
 .solution-item h4 {
@@ -2503,8 +2507,11 @@ footer {
     padding: 120px 24px 80px;
   }
 
-  .nav-pill {
+  .navbar-shell {
     width: min(90%, 1000px);
+  }
+
+  .nav-pill {
     gap: 0;
   }
 
@@ -3274,9 +3281,13 @@ footer {
 
 /* ─── MOBILE PILL: collapse links, show hamburger ─── */
 @media (max-width: 900px) {
-  .nav-pill {
+  .navbar-shell {
     width: min(92%, 600px);
     top: 12px;
+    height: 52px;
+  }
+
+  .nav-pill {
     height: 52px;
     gap: 0;
     padding: 0 6px;
@@ -3288,7 +3299,8 @@ footer {
 
   .nav-pill-logo {
     padding: 0;
-    margin-left: 16px;
+    margin-right: 16px;
+    margin-left: 0;
   }
 
   .nav-pill-logo-img {

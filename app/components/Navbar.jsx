@@ -45,26 +45,9 @@ const InboxIcon = () => (
 export default function Navbar({ activeSection }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [hoveredTab, setHoveredTab] = useState(null);
-  const [isVisible, setIsVisible] = useState(true);
-  const lastScrollY = useRef(0);
   const menuRef = useRef(null);
 
   const effectiveTab = hoveredTab || activeSection;
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
-      }
-      lastScrollY.current = currentScrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     let tween;
@@ -104,8 +87,8 @@ export default function Navbar({ activeSection }) {
   return (
     <>
       {/* Floating pill navbar — visible at all sizes */}
-      <nav className={`nav-pill ${isVisible ? "visible" : "hidden"}`}>
-        {/* Logo badge */}
+      <div className="navbar-shell">
+        {/* Logo — sits outside the pill on the dark hero background */}
         <a
           className="nav-pill-logo"
           href="#hero"
@@ -114,6 +97,7 @@ export default function Navbar({ activeSection }) {
           <img src="/gts-finlabs-logo-2.png" alt="GTS Finlabs" className="nav-pill-logo-img" />
         </a>
 
+        <nav className="nav-pill">
         {/* Tabs group: Home button + nav links */}
         <div className="nav-pill-tabs">
           {/* Home button */}
@@ -169,6 +153,7 @@ export default function Navbar({ activeSection }) {
           </button>
         </div>
       </nav>
+      </div>
 
       {/* Mobile menu overlay */}
       <div
