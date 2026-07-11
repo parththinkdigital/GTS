@@ -94,7 +94,8 @@ export default function Navbar({ activeSection }) {
           href="#hero"
           onClick={(e) => handleNavClick(e, "hero")}
         >
-          <img src="/gts-finlabs-logo-2.png" alt="GTS Finlabs" className="nav-pill-logo-img" />
+          <img src="/gts.png" alt="GTS Finlabs" className="nav-pill-logo-img nav-pill-logo-img--desktop" />
+          <img src="/gts-finlabs-logo-2.png" alt="GTS Finlabs" className="nav-pill-logo-img nav-pill-logo-img--mobile" />
         </a>
 
         <nav className="nav-pill">
@@ -162,17 +163,7 @@ export default function Navbar({ activeSection }) {
         style={{ pointerEvents: menuOpen ? "auto" : "none" }}
       >
         <div className="mobile-menu-inner">
-          <button
-            onClick={() => setMenuOpen(false)}
-            className="mobile-close"
-            aria-label="Close menu"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" width="20" height="20">
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
-          <img src="/gts-finlabs-logo-2.png" alt="GTS Finlabs" className="mobile-menu-logo" />
+          <img src="/gts.png" alt="GTS Finlabs" className="mobile-menu-logo" />
           <nav className="mobile-nav-links">
             <a
               href="#hero"

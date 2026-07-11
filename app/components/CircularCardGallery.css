@@ -592,7 +592,18 @@ footer.bold-footer {
   }
 
   .footer-gradient-logo-col {
-    display: none;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 32px;
+    overflow: hidden;
+    position: static;
+  }
+
+  .footer-big-text {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+    text-align: center;
+    white-space: nowrap;
   }
 
   .footer-large-title {
@@ -603,8 +614,8 @@ footer.bold-footer {
 
 @media (max-width: 480px) {
   .footer-right-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
   }
 
   .footer-magnet-col {
