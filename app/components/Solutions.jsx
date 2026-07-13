@@ -201,9 +201,9 @@ export default function Solutions() {
 
       <div className="container">
         <div className="section-header">
-          <div className="section-eyebrow">
+          {/* <div className="section-eyebrow">
             <span className="e-dot"></span> Our Solutions
-          </div>
+          </div> */}
           <h2 className="section-title" style={{ background: 'linear-gradient(135deg, #7A9FE8, #0C2D89, #0a1a4a)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
             End-to-End Solutions for
             <br />

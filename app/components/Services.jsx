@@ -138,9 +138,9 @@ export default function Services() {
 
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
         <div className="section-header">
-          <div className="section-eyebrow">
+          {/* <div className="section-eyebrow">
             <span className="e-dot"></span> Our Services
-          </div>
+          </div> */}
           <h2 className="section-title" style={{ background: 'linear-gradient(135deg, #7A9FE8, #0C2D89, #0a1a4a)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
             Expert Services That
             <br />

@@ -363,7 +363,7 @@ footer.bold-footer {
 
 .footer-gradient-logo-col .footer-big-text {
   font-size: clamp(4rem, 9vw, 7rem);
-  opacity: 0.18;
+  opacity: 0.06;
   transition: opacity 0.4s ease;
   white-space: nowrap;
   padding: 0;
@@ -371,7 +371,7 @@ footer.bold-footer {
 }
 
 .footer-gradient-logo-col .footer-big-text:hover {
-  opacity: 0.35;
+  opacity: 0.15;
 }
 
 .footer-left-col {
@@ -557,8 +557,8 @@ footer.bold-footer {
 /* Responsive queries */
 @media (max-width: 1024px) {
   .footer-main-grid {
-    grid-template-columns: 1fr;
-    gap: 60px;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
   }
 
   .footer-right-grid {
@@ -580,6 +580,10 @@ footer.bold-footer {
 @media (max-width: 900px) {
   footer.bold-footer {
     padding: 80px 0 40px 0 !important;
+  }
+
+  .footer-main-grid {
+    grid-template-columns: 1fr;
   }
 
   .footer-right-grid {
