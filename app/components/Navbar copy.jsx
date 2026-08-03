@@ -4,21 +4,40 @@
 import { useEffect, useState, useRef } from "react";
 
 const navItems = [
-  { id: "impact", label: "About", hasDropdown: true },
-  { id: "products", label: "Product", hasDropdown: true },
-  { id: "solutions", label: "Resources", hasDropdown: true },
-  { id: "contact", label: "Contact", hasDropdown: false },
+  { id: "products", label: "Products", icon: "folder" },
+  { id: "services", label: "Services", icon: "faq" },
+  { id: "solutions", label: "Solutions", icon: "inbox" },
 ];
 
-const ChevronDown = () => (
-  <svg viewBox="0 0 12 8" fill="none" aria-hidden="true" className="h-[7px] w-2.5 shrink-0">
-    <path d="M1 1.25 6 6.25l5-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+const HomeIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nav-pill-icon">
+    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+    <polyline points="9 22 9 12 15 12 15 22" />
   </svg>
 );
 
-const ArrowRight = () => (
-  <svg viewBox="0 0 16 12" fill="none" aria-hidden="true" className="h-3 w-4 shrink-0">
-    <path d="M1 6h13M9.5 1.5 14 6l-4.5 4.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+const FolderIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nav-pill-icon">
+    <rect x="3" y="3" width="7" height="9" rx="1" />
+    <rect x="14" y="3" width="7" height="5" rx="1" />
+    <rect x="14" y="12" width="7" height="9" rx="1" />
+    <rect x="3" y="16" width="7" height="5" rx="1" />
+  </svg>
+);
+
+const FaqIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nav-pill-icon">
+    <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+    <path d="M10 11h4v2h-4z" fill="currentColor" stroke="none" />
+  </svg>
+);
+
+const InboxIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nav-pill-icon">
+    <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.9 1.2 1.5 1.5 2.5" />
+    <path d="M9 18h6" />
+    <path d="M10 22h4" />
   </svg>
 );
 
@@ -65,62 +84,76 @@ export default function Navbar({ activeSection }) {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const linkClass = (id) =>
-    `inline-flex shrink-0 items-center gap-[7px] text-[0.95rem] font-medium tracking-[-0.01em] no-underline transition-colors duration-200 hover:text-[#00A896] ${
-      effectiveTab === id ? "text-[#00A896]" : "text-[#1A1A1A]"
-    }`;
-
   return (
     <>
       {/* Floating pill navbar — visible at all sizes */}
-      <div className="fixed left-1/2 top-0 z-[1000] mx-auto grid min-h-[76px] w-[calc(100%-24px)] -translate-x-1/2 grid-cols-[1fr_auto_1fr] items-center gap-4 rounded-b-[24px] bg-[#EEF0F2] px-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] sm:w-[min(calc(100%-48px),1180px)] sm:min-h-[92px] sm:gap-6 sm:px-10 lg:min-h-[100px]">
+      <div className="navbar-shell">
+        {/* Logo — sits outside the pill on the dark hero background */}
         <a
-          className="inline-flex shrink-0 items-center justify-self-start no-underline"
+          className="nav-pill-logo"
           href="#hero"
           onClick={(e) => handleNavClick(e, "hero")}
-          aria-label="GTS Finlabs home"
         >
-          <img src="/gts.png" alt="GTS Finlabs" className="h-12 w-auto object-contain sm:h-14 lg:h-16" />
+          <img src="/gts-new-logo.png" alt="GTS Finlabs" className="nav-pill-logo-img nav-pill-logo-img--desktop" />
+          <img src="/gts-new-logo.png" alt="GTS Finlabs" className="nav-pill-logo-img nav-pill-logo-img--mobile" />
         </a>
 
-        {/* Center: nav links */}
-        <nav className="hidden items-center justify-center gap-7 lg:flex xl:gap-9">
-          {navItems.map((item) => (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              className={linkClass(item.id)}
-              onClick={(e) => handleNavClick(e, item.id)}
-              onMouseEnter={() => setHoveredTab(item.id)}
-              onMouseLeave={() => setHoveredTab(null)}
-            >
-              <span>{item.label}</span>
-              {item.hasDropdown && <ChevronDown />}
-            </a>
-          ))}
-        </nav>
+        <nav className="nav-pill">
+        {/* Tabs group: Home button + nav links */}
+        <div className="nav-pill-tabs">
+          {/* Home button */}
+          <a
+            className={`nav-pill-home-btn${effectiveTab === "hero" ? " active" : ""}`}
+            href="#hero"
+            onClick={(e) => handleNavClick(e, "hero")}
+            onMouseEnter={() => setHoveredTab("hero")}
+            onMouseLeave={() => setHoveredTab(null)}
+          >
+            <HomeIcon />
+            <span>Home</span>
+          </a>
+
+          {/* Nav links — hidden on mobile */}
+          <div className="nav-pill-links">
+            {navItems.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className={`nav-pill-link${effectiveTab === item.id ? " active" : ""}`}
+                onClick={(e) => handleNavClick(e, item.id)}
+                onMouseEnter={() => setHoveredTab(item.id)}
+                onMouseLeave={() => setHoveredTab(null)}
+              >
+                {item.icon === "folder" && <FolderIcon />}
+                {item.icon === "faq" && <FaqIcon />}
+                {item.icon === "inbox" && <InboxIcon />}
+                <span>{item.label}</span>
+              </a>
+            ))}
+          </div>
+        </div>
 
         {/* Right side: CTA + hamburger */}
-        <div className="flex items-center justify-end justify-self-end gap-3">
+        <div className="nav-pill-right">
           <a
             href="#"
-            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full border-[1.5px] border-[#00A896] bg-[#F5F7F8] px-4 py-2.5 text-[0.85rem] font-bold text-[#00A896] no-underline shadow-[0_6px_18px_rgba(0,168,150,0.12),0_2px_10px_rgba(0,0,0,0.06)] transition duration-150 hover:-translate-y-px hover:bg-[#00A896] hover:text-white hover:shadow-[0_10px_24px_rgba(0,168,150,0.24),0_4px_14px_rgba(0,0,0,0.08)] active:scale-[0.96] sm:gap-2.5 sm:px-[22px] sm:py-3 sm:text-[0.95rem]"
+            className="nav-pill-cta"
             onClick={(e) => {
               e.preventDefault();
               document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
             }}
           >
-            <span className="whitespace-nowrap">Schedule a Demo</span>
-            <ArrowRight />
+            Schedule a Demo
           </a>
           <button
             onClick={() => setMenuOpen((p) => !p)}
-            className="relative flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-[rgba(0,168,150,0.25)] bg-[#F5F7F8] transition-colors duration-300 hover:bg-white lg:hidden"
+            className="hamburger-btn"
             aria-label="Toggle menu"
           >
             <span className={`hamburger-line ${menuOpen ? "open" : ""}`} />
           </button>
         </div>
+      </nav>
       </div>
 
       {/* Mobile menu overlay */}
