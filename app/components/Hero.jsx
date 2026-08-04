@@ -63,7 +63,7 @@ export default function Hero() {
           <span className="hero-title-line accent">Journeys from Selection to Collection</span>
         </h1>
         <p>
-          Transforming engagement , lending, collections and recovered with AI-powered intelligence
+          Transforming engagement, lending, collections, and recovery with AI-powered intelligence.
         </p>
       </div>
 

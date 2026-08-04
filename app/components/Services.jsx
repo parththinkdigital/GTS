@@ -142,14 +142,19 @@ export default function Services() {
             <span className="e-dot"></span> Our Services
           </div> */}
           <h2 className="section-title" style={{ background: 'linear-gradient(135deg, #7A9FE8, #0C2D89, #0a1a4a)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-            Expert Services That
+            Expert Services for
             <br />
-            Maximize Your Impact
+            simplifying lending journeys
           </h2>
         </div>
 
+        <p className="section-intro">
+          Domain expertise backed by technology to help financial institutions scale
+          lending, collections, and customer engagement with confidence.
+        </p>
+
         <div className="services-grid">
-          <div className="service-card service-card-implementation">
+              <div className="service-card service-card-implementation">
             <div className="service-card-glow" />
             <div className="service-visual">
               <div className="service-img" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}>
@@ -160,14 +165,17 @@ export default function Services() {
               <div className="service-card-head">
                 <div className="num">01</div>
                 <div>
-                  <h3>Implementation Services</h3>
+                  <h3>Digital Onboarding Service</h3>
                 </div>
               </div>
               <p>
-                End-to-end onboarding across integration, migration, and go-live
-                support, ensuring every rollout is seamless, scalable, and
-                future-ready.
+                Streamlined digital onboarding journeys designed to simplify
+                loan and CASA account activation with secure, frictionless experiences.
               </p>
+              <div className="service-sub-items">
+                <span className="service-sub-item">Loan Journeys</span>
+                <span className="service-sub-item">CASA Journeys</span>
+              </div>
             </div>
           </div>
 
@@ -190,6 +198,10 @@ export default function Services() {
                 compliance, and continuous optimization across every deployed
                 platform.
               </p>
+              <div className="service-sub-items">
+                <span className="service-sub-item">Marketing Automation</span>
+                <span className="service-sub-item">Debt Collection</span>
+              </div>
             </div>
           </div>
         </div>

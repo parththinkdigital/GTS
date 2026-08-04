@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
-  ArrowRight,
   Briefcase,
   Coins,
   Layers,
@@ -15,181 +14,6 @@ import {
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const SOLUTIONS = [
-  {
-    id: "01",
-    title: "Acquisition & Engagement",
-    frontIcon: <Magnet size={22} />,
-    items: [
-      {
-        title: "Seamless Customer Journey",
-        icon: (
-          <img
-            src="/icons/SeamlessCustomerJourney.png"
-            alt="Seamless Customer Journey"
-            width="18"
-            height="18"
-          />
-        ),
-        desc: "A unified credit ecosystem connecting acquisition, onboarding, lending, monitoring, and collections.",
-      },
-      {
-        title: "Customer Acquisition",
-        icon: <Magnet size={18} />,
-        desc: "AI-driven customer intelligence and personalized engagement that turn prospects into long-term relationships.",
-      },
-      {
-        title: "Digital Onboarding and LOS",
-        icon: (
-          <img
-            src="/icons/digitalonboarding.png"
-            alt="Digital Onboarding"
-            width="18"
-            height="18"
-          />
-        ),
-        desc: "A paperless onboarding and origination experience powered by digital identity verification and real-time decisioning.",
-      },
-      {
-        title: "Business Rule Engine",
-        icon: (
-          <img
-            src="/icons/businessruleengine.png"
-            alt="Business Rule Engine"
-            width="18"
-            height="18"
-          />
-        ),
-        desc: "No-code decisioning framework, transforming credit policies into automated and explainable outcomes.",
-      },
-    ],
-  },
-  {
-    id: "02",
-    title: "Credit & Decisioning",
-    frontIcon: <Layers size={22} />,
-    items: [
-      {
-        title: "Alternative Credit Modelling",
-        icon: <Layers size={18} />,
-        desc: "Behavior-driven credit intelligence built on alternative data sources beyond traditional bureau scores.",
-      },
-      {
-        title: "Comprehensive LMS",
-        icon: <Briefcase size={18} />,
-        desc: "End-to-end loan lifecycle management with automation, portfolio visibility, and proactive risk monitoring.",
-      },
-      {
-        title: "Digital Debt Collection",
-        icon: <Coins size={18} />,
-        desc: "An intelligent collections framework combining predictive insights, omnichannel outreach, and compliance-first recovery.",
-      },
-      {
-        title: "Intelligent Engagement",
-        icon: (
-          <img
-            src="/icons/intelligentenagement.png"
-            alt="Intelligent Engagement"
-            width="18"
-            height="18"
-          />
-        ),
-        desc: "Personalized customer engagement powered by AI, real-time insights, and omnichannel orchestration.",
-      },
-    ],
-  },
-  {
-    id: "03",
-    title: "Operations & Communication",
-    frontIcon: <LayoutTemplate size={22} />,
-    items: [
-      {
-        title: "Digital Content Management",
-        icon: <LayoutTemplate size={18} />,
-        desc: "Data-driven content experiences that combine personalization, interactivity, and measurable engagement.",
-      },
-      {
-        title: "CPaaS",
-        icon: (
-          <img src="/icons/cpaas.png" alt="CPaaS" width="18" height="18" />
-        ),
-        desc: "A unified communication infrastructure connecting Voice, WhatsApp, RCS, SMS, and Email through a single platform.",
-      },
-    ],
-  },
-];
-
-function FlipCard({ card }) {
-  const innerRef = useRef(null);
-  const [flipped, setFlipped] = useState(false);
-
-  useEffect(() => {
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (reduceMotion || !innerRef.current) {
-      gsap.set(innerRef.current, { rotateY: flipped ? 180 : 0 });
-      return;
-    }
-    gsap.to(innerRef.current, {
-      rotateY: flipped ? 180 : 0,
-      duration: 0.8,
-      ease: "power2.inOut",
-    });
-    return () => gsap.killTweensOf(innerRef.current);
-  }, [flipped]);
-
-  const isDesktop = () =>
-    window.matchMedia("(min-width: 1025px)").matches;
-
-  const handleEnter = () => {
-    if (isDesktop()) setFlipped(true);
-  };
-  const handleLeave = () => {
-    if (isDesktop()) setFlipped(false);
-  };
-  const handleClick = () => {
-    if (!isDesktop()) setFlipped((f) => !f);
-  };
-
-  return (
-    <div
-      className={flipped ? "flip-card is-flipped" : "flip-card"}
-      onMouseEnter={handleEnter}
-      onMouseLeave={handleLeave}
-      onClick={handleClick}
-    >
-      <div className="flip-card-inner" ref={innerRef}>
-        <div className="flip-card-face flip-card-front">
-          <div className="flip-front-icon">{card.frontIcon}</div>
-          <span className="flip-front-num">{card.id}</span>
-          <h4 className="flip-front-title">{card.title}</h4>
-        </div>
-
-        <div className="flip-card-face flip-card-back">
-          <div className="flip-back-header">
-            <h4 className="flip-back-title">{card.title}</h4>
-            <ArrowRight size={18} />
-          </div>
-          <ul className="flip-back-list">
-            {card.items.map((item) => (
-              <li key={item.title}>
-                <button type="button" className="flip-pill">
-                  <span className="flip-pill-icon">{item.icon}</span>
-                  <span className="flip-pill-text">
-                    <span className="flip-pill-title">{item.title}</span>
-                    <span className="flip-pill-desc">{item.desc}</span>
-                  </span>
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function Solutions() {
   const sectionRef = useRef(null);
 
@@ -198,8 +22,9 @@ export default function Solutions() {
       const section = sectionRef.current;
       const q = gsap.utils.selector(section);
       const header = q(".section-header");
-      const cards = q(".flip-card");
-      const icons = q(".flip-front-icon");
+      const columns = q(".solutions-col");
+      const cards = q(".solution-item");
+      const icons = q(".solution-icon");
       const reduceMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
       ).matches;
@@ -207,7 +32,7 @@ export default function Solutions() {
       if (!cards.length) return;
 
       if (reduceMotion) {
-        gsap.set([header, cards, icons], {
+        gsap.set([header, columns, cards, icons], {
           opacity: 1,
           x: 0,
           y: 0,
@@ -218,7 +43,7 @@ export default function Solutions() {
         return;
       }
 
-      gsap.set(cards, {
+      gsap.set(columns, {
         transformPerspective: 1200,
         transformOrigin: "center center",
       });
@@ -250,7 +75,7 @@ export default function Solutions() {
           0,
         )
           .fromTo(
-            cards[0],
+            columns[0],
             {
               autoAlpha: 0,
               x: -360,
@@ -270,7 +95,7 @@ export default function Solutions() {
             0.14,
           )
           .fromTo(
-            cards[1],
+            columns[1],
             { autoAlpha: 0, y: 300, scale: 0.92, filter: "blur(16px)" },
             {
               autoAlpha: 1,
@@ -283,7 +108,7 @@ export default function Solutions() {
             0.25,
           )
           .fromTo(
-            cards[2],
+            columns[2],
             { autoAlpha: 0, x: 360, y: 20, rotateY: 12, filter: "blur(16px)" },
             {
               autoAlpha: 1,
@@ -334,7 +159,7 @@ export default function Solutions() {
           0,
         )
           .fromTo(
-            cards,
+            columns,
             { autoAlpha: 0, y: 92, filter: "blur(10px)" },
             {
               autoAlpha: 1,
@@ -387,9 +212,156 @@ export default function Solutions() {
         </div>
 
         <div className="solutions-grid">
-          {SOLUTIONS.map((card) => (
-            <FlipCard key={card.id} card={card} />
-          ))}
+          <div className="solutions-col solutions-col-acquisition">
+            <div className="solutions-col-header">
+              <div className="cat-num">01</div>
+              <h4>Acquisition &amp; Engagement</h4>
+            </div>
+
+            <div className="solution-item glass-hover">
+              <div className="solution-item-header">
+                <div className="solution-icon">
+                  <img src="/icons/SeamlessCustomerJourney.png" alt="Seamless Customer Journey" width="18" height="18" />
+                </div>
+                <h4>Seamless Customer Journey</h4>
+              </div>
+              <p>
+                A unified credit ecosystem connecting acquisition, onboarding,
+                lending, monitoring, and collections.
+              </p>
+            </div>
+
+            <div className="solution-item glass-hover">
+              <div className="solution-item-header">
+                <div className="solution-icon">
+                  <Magnet size={18} />
+                </div>
+                <h4>Customer Acquisition</h4>
+              </div>
+              <p>
+                AI-driven customer intelligence and personalized engagement that
+                turn prospects into long-term relationships.
+              </p>
+            </div>
+
+            <div className="solution-item glass-hover">
+              <div className="solution-item-header">
+                <div className="solution-icon">
+                  <img src="/icons/digitalonboarding.png" alt="Digital Onboarding" width="18" height="18" />
+                </div>
+                <h4>Digital Onboarding and LOS</h4>
+              </div>
+              <p>
+                A paperless onboarding and origination experience powered by
+                digital identity verification and real-time decisioning.
+              </p>
+            </div>
+
+            <div className="solution-item glass-hover">
+              <div className="solution-item-header">
+                <div className="solution-icon">
+                  <img src="/icons/businessruleengine.png" alt="Business Rule Engine" width="18" height="18" />
+                </div>
+                <h4>Business Rule Engine</h4>
+              </div>
+              <p>
+                No-code decisioning framework, transforming credit policies into
+                automated and explainable outcomes.
+              </p>
+            </div>
+          </div>
+
+          <div className="solutions-col solutions-col-credit">
+            <div className="solutions-col-header">
+              <div className="cat-num">02</div>
+              <h4>Credit &amp; Decisioning</h4>
+            </div>
+
+            <div className="solution-item glass-hover">
+              <div className="solution-item-header">
+                <div className="solution-icon">
+                  <Layers size={18} />
+                </div>
+                <h4>Alternative Credit Modelling</h4>
+              </div>
+              <p>
+                Behavior-driven credit intelligence built on alternative data
+                sources beyond traditional bureau scores.
+              </p>
+            </div>
+
+            <div className="solution-item glass-hover">
+              <div className="solution-item-header">
+                <div className="solution-icon">
+                  <Briefcase size={18} />
+                </div>
+                <h4>Comprehensive LMS</h4>
+              </div>
+              <p>
+                End-to-end loan lifecycle management with automation, portfolio
+                visibility, and proactive risk monitoring.
+              </p>
+            </div>
+
+            <div className="solution-item glass-hover">
+              <div className="solution-item-header">
+                <div className="solution-icon">
+                  <Coins size={18} />
+                </div>
+                <h4>Digital Debt Collection</h4>
+              </div>
+              <p>
+                An intelligent collections framework combining predictive
+                insights, omnichannel outreach, and compliance-first recovery.
+              </p>
+            </div>
+
+            <div className="solution-item glass-hover">
+              <div className="solution-item-header">
+                <div className="solution-icon">
+                  <img src="/icons/intelligentenagement.png" alt="Intelligent Engagement" width="18" height="18" />
+                </div>
+                <h4>Intelligent Engagement</h4>
+              </div>
+              <p>
+                Personalized customer engagement powered by AI, real-time
+                insights, and omnichannel orchestration.
+              </p>
+            </div>
+          </div>
+
+          <div className="solutions-col solutions-col-operations">
+            <div className="solutions-col-header">
+              <div className="cat-num">03</div>
+              <h4>Operations &amp; Communication</h4>
+            </div>
+
+            <div className="solution-item glass-hover">
+              <div className="solution-item-header">
+                <div className="solution-icon">
+                  <LayoutTemplate size={18} />
+                </div>
+                <h4>Digital Content Management</h4>
+              </div>
+              <p>
+                Data-driven content experiences that combine personalization,
+                interactivity, and measurable engagement.
+              </p>
+            </div>
+
+            <div className="solution-item glass-hover">
+              <div className="solution-item-header">
+                <div className="solution-icon">
+                  <img src="/icons/cpaas.png" alt="CPaaS" width="18" height="18" />
+                </div>
+                <h4>CPaaS</h4>
+              </div>
+              <p>
+                A unified communication infrastructure connecting Voice,
+                WhatsApp, RCS, SMS, and Email through a single platform.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -2,6 +2,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import "../components/CircularCardGallery.css";
 
 
 
