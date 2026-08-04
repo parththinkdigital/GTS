@@ -94,8 +94,8 @@ export default function Navbar({ activeSection }) {
           href="#hero"
           onClick={(e) => handleNavClick(e, "hero")}
         >
-          <img src="/gts.png" alt="GTS Finlabs" className="nav-pill-logo-img nav-pill-logo-img--desktop" />
-          <img src="/gts-finlabs-logo-2.png" alt="GTS Finlabs" className="nav-pill-logo-img nav-pill-logo-img--mobile" />
+          <img src="/gts-new-logo.png" alt="GTS Finlabs" className="nav-pill-logo-img nav-pill-logo-img--desktop" />
+          <img src="/gts-new-logo.png" alt="GTS Finlabs" className="nav-pill-logo-img nav-pill-logo-img--mobile" />
         </a>
 
         <nav className="nav-pill">

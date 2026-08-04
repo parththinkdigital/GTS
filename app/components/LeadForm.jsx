@@ -88,9 +88,9 @@ export default function LeadForm() {
       <div className="container">
         <div className="lead-container">
           <div className="lead-copy">
-            <div className="section-eyebrow">
+            {/* <div className="section-eyebrow">
               <span className="e-dot"></span> Talk to GTS Finlabs
-            </div>
+            </div> */}
             <h2 className="section-title" style={{ background: 'linear-gradient(135deg, #7A9FE8, #0C2D89, #0a1a4a)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
               Ready to modernize your financial stack?
             </h2>
@@ -183,7 +183,7 @@ export default function LeadForm() {
                 {loading ? "Sending…" : "Submit request"}
                 {!loading &&
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
-                    <path d="M4 4 C10 6.5, 16 9.5, 21 11.5 C21.5 11.7, 21.5 12.3, 21 12.5 C16 14.5, 10 17.5, 4 20 C5.5 17, 6.5 14.5, 6.5 12 C6.5 9.5, 5.5 7, 4 4 Z"/>
+                    <path d="M4 4 C10 6.5, 16 9.5, 21 11.5 C21.5 11.7, 21.5 12.3, 21 12.5 C16 14.5, 10 17.5, 4 20 C5.5 17, 6.5 14.5, 6.5 12 C6.5 9.5, 5.5 7, 4 4 Z" />
                   </svg>
                 }
               </button>
