@@ -59,12 +59,11 @@ export default function Hero() {
 
       <div className="hero-grid">
         <h1 className="hero-title">
-          <span className="hero-title-line">Powering Smarter</span>
-          <span className="hero-title-line accent">Financial Journeys</span>
+          <span className="hero-title-line">Powering Intelligent Lending</span>
+          <span className="hero-title-line accent">Journeys from Selection to Collection</span>
         </h1>
         <p>
-          Transform financial services with intelligent customer engagement,
-          digital lending workflows, and automated lifecycle management built for scale.
+          Transforming engagement, lending, collections, and recovery with AI-powered intelligence.
         </p>
       </div>
 

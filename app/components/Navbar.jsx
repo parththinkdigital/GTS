@@ -40,6 +40,17 @@ const InboxIcon = () => (
     <path d="M10 22h4" />
   </svg>
 );
+const ChevronDown = () => (
+  <svg viewBox="0 0 12 8" fill="none" aria-hidden="true" className="h-[7px] w-2.5 shrink-0">
+    <path d="M1 1.25 6 6.25l5-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const ArrowRight = () => (
+  <svg viewBox="0 0 16 12" fill="none" aria-hidden="true" className="h-3 w-4 shrink-0">
+    <path d="M1 6h13M9.5 1.5 14 6l-4.5 4.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
 
 
 export default function Navbar({ activeSection }) {
@@ -84,76 +95,82 @@ export default function Navbar({ activeSection }) {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const linkClass = (id) =>
+    `inline-flex shrink-0 items-center gap-[7px] text-[0.95rem] font-medium tracking-[-0.01em] no-underline transition-colors duration-200 hover:text-[#00A896] ${effectiveTab === id ? "text-[#00A896]" : "text-[#1A1A1A]"
+    }`;
+
   return (
     <>
       {/* Floating pill navbar — visible at all sizes */}
-      <div className="navbar-shell">
-        {/* Logo — sits outside the pill on the dark hero background */}
+      <div className="fixed left-1/2 top-0 z-[1000] mx-auto grid min-h-[76px] w-[calc(100%-24px)] -translate-x-1/2 grid-cols-[1fr_auto_1fr] items-center gap-4 rounded-b-[24px] bg-[#EEF0F2] px-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] sm:w-[min(calc(100%-48px),1180px)] sm:min-h-[92px] sm:gap-6 sm:px-10 lg:min-h-[100px]">
         <a
-          className="nav-pill-logo"
+          className="inline-flex shrink-0 items-center justify-self-start no-underline"
           href="#hero"
+          style={{ marginLeft: "3vw" }}
           onClick={(e) => handleNavClick(e, "hero")}
+          aria-label="GTS Finlabs home"
         >
-          <img src="/gts-new-logo.png" alt="GTS Finlabs" className="nav-pill-logo-img nav-pill-logo-img--desktop" />
-          <img src="/gts-new-logo.png" alt="GTS Finlabs" className="nav-pill-logo-img nav-pill-logo-img--mobile" />
+          <img src="/gts.png" alt="GTS Finlabs" className="h-12 w-auto object-contain sm:h-14 lg:h-[60px]" />
         </a>
 
-        <nav className="nav-pill">
-        {/* Tabs group: Home button + nav links */}
-        <div className="nav-pill-tabs">
-          {/* Home button */}
-          <a
-            className={`nav-pill-home-btn${effectiveTab === "hero" ? " active" : ""}`}
-            href="#hero"
-            onClick={(e) => handleNavClick(e, "hero")}
-            onMouseEnter={() => setHoveredTab("hero")}
-            onMouseLeave={() => setHoveredTab(null)}
-          >
-            <HomeIcon />
-            <span>Home</span>
-          </a>
+        {/* Center: nav links */}
+        <nav className="hidden items-center justify-center gap-8 lg:flex xl:gap-12">
+          <div className="nav-pill-tabs">
+            {/* Home button */}
+            <a
+              className={`nav-pill-home-btn${effectiveTab === "hero" ? " active" : ""}`}
+              href="#hero"
+              onClick={(e) => handleNavClick(e, "hero")}
+              onMouseEnter={() => setHoveredTab("hero")}
+              onMouseLeave={() => setHoveredTab(null)}
+            >
+              <HomeIcon />
+              <span>Home</span>
+            </a>
 
-          {/* Nav links — hidden on mobile */}
-          <div className="nav-pill-links">
-            {navItems.map((item) => (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                className={`nav-pill-link${effectiveTab === item.id ? " active" : ""}`}
-                onClick={(e) => handleNavClick(e, item.id)}
-                onMouseEnter={() => setHoveredTab(item.id)}
-                onMouseLeave={() => setHoveredTab(null)}
-              >
-                {item.icon === "folder" && <FolderIcon />}
-                {item.icon === "faq" && <FaqIcon />}
-                {item.icon === "inbox" && <InboxIcon />}
-                <span>{item.label}</span>
-              </a>
-            ))}
+            {/* Nav links — hidden on mobile */}
+            <div className="nav-pill-links">
+              {navItems.map((item) => (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  className={`nav-pill-link${effectiveTab === item.id ? " active" : ""}`}
+                  onClick={(e) => handleNavClick(e, item.id)}
+                  onMouseEnter={() => setHoveredTab(item.id)}
+                  onMouseLeave={() => setHoveredTab(null)}
+                >
+                  {item.icon === "folder" && <FolderIcon />}
+                  {item.icon === "faq" && <FaqIcon />}
+                  {item.icon === "inbox" && <InboxIcon />}
+                  <span>{item.label}</span>
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
+        </nav>
 
         {/* Right side: CTA + hamburger */}
-        <div className="nav-pill-right">
+        <div className="flex items-center justify-end justify-self-end gap-3" style={{ marginRight: "3vw" }}>
           <a
             href="#"
-            className="nav-pill-cta"
+            className="hidden lg:flex items-center gap-2 bg-[#102B7B] hover:bg-[#0c1f59] text-white rounded-full transition-colors duration-300"
+            style={{ padding: "12px 28px" }}
             onClick={(e) => {
               e.preventDefault();
               document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
             }}
           >
-            Schedule a Demo
+            <span className="whitespace-nowrap font-semibold text-[15px]">Schedule a Demo</span>
+            <ArrowRight />
           </a>
           <button
             onClick={() => setMenuOpen((p) => !p)}
-            className="hamburger-btn"
+            className="relative flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-[rgba(0,168,150,0.25)] bg-[#F5F7F8] transition-colors duration-300 hover:bg-white lg:hidden"
             aria-label="Toggle menu"
           >
             <span className={`hamburger-line ${menuOpen ? "open" : ""}`} />
           </button>
         </div>
-      </nav>
       </div>
 
       {/* Mobile menu overlay */}
