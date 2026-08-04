@@ -1,11 +1,13 @@
 "use client";
 
 import { Globe } from "lucide-react";
+import Image from "next/image";
+
 const ASSOCIATE_COMPANIES = [
-  { name: "Globe Teleservices", url: "https://globeteleservices.com" },
-  { name: "New Vision", url: "https://newvision-software.com" },
-  { name: "CERF", url: "https://cerfgs.com" },
-  { name: "VSPAGY", url: "https://vspagy.com" },
+  { name: "Globe Teleservices", url: "https://globeteleservices.com", logo: "/assets/Global-Services-logo.png" },
+  { name: "New Vision", url: "https://newvision-software.com", logo: "/assets/New-Vision-logo (2).png" },
+  { name: "CERF", url: "https://cerfgs.com", logo: "/assets/CERF-logo.png" },
+  { name: "VSPAGY", url: "https://vspagy.com", logo: "/assets/VSPAGY-logo (1).png" },
 ];
 
 const BANKS = [
@@ -51,8 +53,15 @@ export default function Clients() {
               target="_blank"
               rel="noopener noreferrer"
               className="trust-company-card"
+              style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
             >
-              <span className="trust-company-name">{company.name}</span>
+              <Image
+                src={company.logo}
+                alt={company.name}
+                width={160}
+                height={60}
+                style={{ objectFit: "contain", maxHeight: "60px", width: "auto" }}
+              />
             </a>
           ))}
         </div>
