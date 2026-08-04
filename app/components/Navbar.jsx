@@ -86,9 +86,9 @@ export default function Navbar({ activeSection }) {
 
   return (
     <>
-      {/* Floating pill navbar — visible at all sizes */}
+      {/* Unified full-width navbar */}
       <div className="navbar-shell">
-        {/* Logo — sits outside the pill on the dark hero background */}
+        {/* Logo — left-aligned in header */}
         <a
           className="nav-pill-logo"
           href="#hero"
