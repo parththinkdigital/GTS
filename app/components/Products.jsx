@@ -7,11 +7,19 @@ import ServicesSection from "./ServicesSection";
 export default function Products() {
   return (
     <section
-      className="section products-section"
+      className="section products-section bg-[#e9e9e7] flex flex-col items-center justify-center w-full"
       id="products"
       style={{
+        backgroundColor: "#e9e9e7",
         boxSizing: "border-box",
-        position: "relative"
+        position: "relative",
+        paddingTop: "4rem",
+        paddingBottom: "5rem",
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
       {/* SVGs removed */}
@@ -56,6 +64,9 @@ export default function Products() {
             <br />
             the End-End Lending Lifecycle
           </h2>
+          <p className="section-intro" style={{ margin: "16px 0 clamp(24px, 3vw, 40px) 0", padding: 0, textAlign: "left", maxWidth: "680px" }}>
+            A digital suite of intelligent products designed to simplify journeys for engagement, collection, lending and legal recovery – reimaging the digital ecosystem.
+          </p>
         </div>
       </div>
 

@@ -26,9 +26,7 @@ export default function Clients() {
     <section className="section trust-section" id="clients">
       <div className="container">
         <div className="section-header">
-          <div className="section-eyebrow">
-            <span className="e-dot"></span> Our Network
-          </div>
+
           <h2
             className="section-title"
             style={{
@@ -71,8 +69,8 @@ export default function Clients() {
             </ul>
           </div>
           <div className="trust-stat-blue">
-            <Globe 
-              style={{ width: '64px', height: '64px', color: '#F5A623', margin: '0 auto 16px', opacity: 0.9 }} 
+            <Globe
+              style={{ width: '64px', height: '64px', color: '#F5A623', margin: '0 auto 16px', opacity: 0.9 }}
             />
             <span className="trust-stat-number">1000+</span>
             <span className="trust-stat-label-blue">Branches Nationwide</span>

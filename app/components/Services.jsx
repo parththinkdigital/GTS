@@ -146,12 +146,11 @@ export default function Services() {
             <br />
             simplifying lending journeys
           </h2>
+          <p className="section-intro" style={{ margin: "16px 0 clamp(24px, 3vw, 40px) 0", padding: 0, textAlign: "left", maxWidth: "680px" }}>
+            Domain expertise backed by technology to help financial institutions scale
+            lending, collections, and customer engagement with confidence.
+          </p>
         </div>
-
-        <p className="section-intro">
-          Domain expertise backed by technology to help financial institutions scale
-          lending, collections, and customer engagement with confidence.
-        </p>
 
         <div className="services-grid">
               <div className="service-card service-card-implementation">
