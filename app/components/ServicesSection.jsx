@@ -269,7 +269,7 @@ export default function ServicesSection() {
       back: {
         title: "INTELLIGENT CUSTOMER ENGAGEMENT",
         description:
-          "Empower customer engagement with AI-driven segmentation, personalised journeys, and omnichannel campaign intelligence.",
+          "Empower customer engagement with AI-driven segmentation, personalised workflows, and omnichannel campaign intelligence.",
       },
     },
     {
@@ -290,7 +290,7 @@ export default function ServicesSection() {
     {
       title: "DIGITAL DEBT COLLECTION",
       items: [
-        { name: "IRAC Compliance Engine", href: "#" },
+        { name: "IRAC Compliant", href: "#" },
         { name: "Aging-based Bucketing", href: "#" },
         { name: "Automated Borrower Nudging", href: "#" },
         { name: "Omnichannel Communication", href: "#" },
@@ -305,10 +305,11 @@ export default function ServicesSection() {
     {
       title: "LEGAL RECOVERY",
       items: [
-        { name: "Integrated Legal Recovery (ILRM)", href: "#" },
+        { name: "Integrated Legal Recovery (IRLM)", href: "#" },
         { name: "Online Dispute Resolution (ODR)", href: "#" },
-        { name: "Arbitration Workflows", href: "#" },
-        { name: "Automated Notice Dispatch", href: "#" },
+        { name: "Mediation and Conciliation", href: "#" },
+        { name: "Legal Advisory", href: "#" },
+        { name: "Lok Adalats", href: "#" },
         { name: "Legal Dashboard & Analytics", href: "#" },
       ],
       back: {

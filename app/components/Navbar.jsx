@@ -110,7 +110,7 @@ export default function Navbar({ activeSection }) {
           onClick={(e) => handleNavClick(e, "hero")}
           aria-label="GTS Finlabs home"
         >
-          <img src="/gts.png" alt="GTS Finlabs" className="h-12 w-auto object-contain sm:h-14 lg:h-[60px]" />
+          <img src="/gts-finlabs-logo-2.png" alt="GTS Finlabs" className="h-12 w-auto object-contain sm:h-14 lg:h-[60px]" />
         </a>
 
         {/* Center: nav links */}

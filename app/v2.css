@@ -1646,8 +1646,9 @@ html {
 }
 
 .trust-companies {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
   margin-bottom: clamp(40px, 5vw, 64px);
 }
@@ -1656,6 +1657,8 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 260px;
+  height: 100px;
   padding: clamp(20px, 2.5vw, 32px);
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.9);
@@ -1682,25 +1685,37 @@ html {
 }
 
 .trust-stats {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 28px;
   margin-bottom: clamp(40px, 5vw, 64px);
 }
 
 .trust-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: clamp(24px, 3vw, 40px);
-  border-radius: 16px;
+  width: 380px;
+  height: 180px;
+  padding: 32px;
+  border-radius: 20px;
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(12, 45, 137, 0.08);
   box-shadow: 0 4px 16px rgba(12, 45, 137, 0.04);
 }
 
 .trust-stat-blue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: clamp(24px, 3vw, 40px);
-  border-radius: 16px;
+  width: 380px;
+  height: 180px;
+  padding: 32px;
+  border-radius: 20px;
   background: var(--brand-blue);
   border: 1px solid rgba(12, 45, 137, 0.08);
   box-shadow: 0 4px 16px rgba(12, 45, 137, 0.04);
@@ -1709,11 +1724,11 @@ html {
 .trust-stat-number {
   display: block;
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 3vw, 3rem);
+  font-size: clamp(2.25rem, 3vw, 3rem);
   font-weight: 900;
   color: var(--brand-orange);
   letter-spacing: -0.03em;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .trust-stat-label {
@@ -1724,7 +1739,6 @@ html {
   color: var(--brand-blue);
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  margin-bottom: 16px;
 }
 
 .trust-stat-label-blue {
@@ -1735,7 +1749,6 @@ html {
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  margin-bottom: 16px;
 }
 
 .trust-stat-list {
@@ -3082,12 +3095,16 @@ footer {
     padding: 12px 0;
   }
 
-  .trust-companies {
-    grid-template-columns: repeat(2, 1fr);
-  }
+
 
   .trust-stats {
-    grid-template-columns: 1fr;
+    flex-wrap: wrap;
+  }
+
+  .trust-stat,
+  .trust-stat-blue {
+    width: 220px;
+    height: 120px;
   }
 
 }
@@ -3125,12 +3142,20 @@ footer {
   }
 
   .trust-companies {
-    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
   }
 
   .trust-stats {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .trust-stat,
+  .trust-stat-blue {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    padding: 20px;
   }
 
   .trust-certs {

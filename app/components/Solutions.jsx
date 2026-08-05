@@ -205,17 +205,23 @@ export default function Solutions() {
             <span className="e-dot"></span> Our Solutions
           </div> */}
           <h2 className="section-title" style={{ background: 'linear-gradient(135deg, #7A9FE8, #0C2D89, #0a1a4a)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-            End-to-End Solutions for
+            Purpose-Built Solutions for  
             <br />
-            Every Stage of Credit
+            Modern Financial Institutions
           </h2>
+            <p className="section-intro" style={{ margin: "16px 0 clamp(24px, 3vw, 40px) 0", padding: 0, textAlign: "left", maxWidth: "680px" }}>
+           Integrated solutions that help banks and NBFCs streamline customer engagement, lending, collections, and legal recovery.
+          </p>
+          
         </div>
 
         <div className="solutions-grid">
           <div className="solutions-col solutions-col-acquisition">
             <div className="solutions-col-header">
               <div className="cat-num">01</div>
-              <h4>Acquisition &amp; Engagement</h4>
+              <h4>Intelligent Customer Engagement Platform as-a-Service</h4>
+              <p>A cloud-agnostic and on-premise ready campaign intelligence platform with an integrated communication layer, 
+                built in line with banking and financial industry regulations.</p>
             </div>
 
             <div className="solution-item glass-hover">
@@ -223,12 +229,9 @@ export default function Solutions() {
                 <div className="solution-icon">
                   <img src="/icons/SeamlessCustomerJourney.png" alt="Seamless Customer Journey" width="18" height="18" />
                 </div>
-                <h4>Seamless Customer Journey</h4>
+                <h4>Data contracts with native sources </h4>
               </div>
-              <p>
-                A unified credit ecosystem connecting acquisition, onboarding,
-                lending, monitoring, and collections.
-              </p>
+              
             </div>
 
             <div className="solution-item glass-hover">
@@ -236,12 +239,9 @@ export default function Solutions() {
                 <div className="solution-icon">
                   <Magnet size={18} />
                 </div>
-                <h4>Customer Acquisition</h4>
+                <h4>AI-powered segmentation engine </h4>
               </div>
-              <p>
-                AI-driven customer intelligence and personalized engagement that
-                turn prospects into long-term relationships.
-              </p>
+             
             </div>
 
             <div className="solution-item glass-hover">
@@ -249,12 +249,9 @@ export default function Solutions() {
                 <div className="solution-icon">
                   <img src="/icons/digitalonboarding.png" alt="Digital Onboarding" width="18" height="18" />
                 </div>
-                <h4>Digital Onboarding and LOS</h4>
+                <h4>Multi-media content Intelligence </h4>
               </div>
-              <p>
-                A paperless onboarding and origination experience powered by
-                digital identity verification and real-time decisioning.
-              </p>
+              
             </div>
 
             <div className="solution-item glass-hover">
@@ -262,32 +259,65 @@ export default function Solutions() {
                 <div className="solution-icon">
                   <img src="/icons/businessruleengine.png" alt="Business Rule Engine" width="18" height="18" />
                 </div>
-                <h4>Business Rule Engine</h4>
+                <h4>Omnichannel delivery</h4>
               </div>
-              <p>
-                No-code decisioning framework, transforming credit policies into
-                automated and explainable outcomes.
-              </p>
+              
             </div>
+            <div className="solution-item glass-hover">
+              <div className="solution-item-header">
+                <div className="solution-icon">
+                  <img src="/icons/businessruleengine.png" alt="Business Rule Engine" width="18" height="18" />
+                </div>
+                <h4>CPaaS journey builder </h4>
+              </div>
+              
+            </div>
+            <div className="solution-item glass-hover">
+              <div className="solution-item-header">
+                <div className="solution-icon">
+                  <img src="/icons/businessruleengine.png" alt="Business Rule Engine" width="18" height="18" />
+                </div>
+                <h4>Web & app personalisation  </h4>
+              </div>
+              
+            </div>
+            <div className="solution-item glass-hover">
+              <div className="solution-item-header">
+                <div className="solution-icon">
+                  <img src="/icons/businessruleengine.png" alt="Business Rule Engine" width="18" height="18" />
+                </div>
+                <h4>Unified reporting & MIS </h4>
+              </div>
+              
+            </div>
+
           </div>
 
           <div className="solutions-col solutions-col-credit">
             <div className="solutions-col-header">
               <div className="cat-num">02</div>
-              <h4>Credit &amp; Decisioning</h4>
+              <h4>End-to-End Lending Stack </h4>
+              <p>A unified lending ecosystem managing the complete customer journey - from 
+                engagement and digital onboarding to credit origination, servicing & monitoring</p>
             </div>
 
+ 
+
+
+
+
+
+
+
+  
             <div className="solution-item glass-hover">
               <div className="solution-item-header">
                 <div className="solution-icon">
                   <Layers size={18} />
                 </div>
-                <h4>Alternative Credit Modelling</h4>
+                <h4>Qualified Lead generation</h4>
               </div>
-              <p>
-                Behavior-driven credit intelligence built on alternative data
-                sources beyond traditional bureau scores.
-              </p>
+              
             </div>
 
             <div className="solution-item glass-hover">
@@ -295,12 +325,9 @@ export default function Solutions() {
                 <div className="solution-icon">
                   <Briefcase size={18} />
                 </div>
-                <h4>Comprehensive LMS</h4>
+                <h4>Customer conversion </h4>
               </div>
-              <p>
-                End-to-end loan lifecycle management with automation, portfolio
-                visibility, and proactive risk monitoring.
-              </p>
+              
             </div>
 
             <div className="solution-item glass-hover">
@@ -308,12 +335,9 @@ export default function Solutions() {
                 <div className="solution-icon">
                   <Coins size={18} />
                 </div>
-                <h4>Digital Debt Collection</h4>
+                <h4>Digital onboarding & LOS </h4>
               </div>
-              <p>
-                An intelligent collections framework combining predictive
-                insights, omnichannel outreach, and compliance-first recovery.
-              </p>
+              
             </div>
 
             <div className="solution-item glass-hover">
@@ -321,32 +345,45 @@ export default function Solutions() {
                 <div className="solution-icon">
                   <img src="/icons/intelligentenagement.png" alt="Intelligent Engagement" width="18" height="18" />
                 </div>
-                <h4>Intelligent Engagement</h4>
+                <h4>LMS – Digitised lending lifecycle </h4>
               </div>
-              <p>
-                Personalized customer engagement powered by AI, real-time
-                insights, and omnichannel orchestration.
-              </p>
+              
+            </div>
+            <div className="solution-item glass-hover">
+              <div className="solution-item-header">
+                <div className="solution-icon">
+                  <img src="/icons/intelligentenagement.png" alt="Intelligent Engagement" width="18" height="18" />
+                </div>
+                <h4>Servicing & Credit monitoring </h4>
+              </div>
+              
             </div>
           </div>
 
           <div className="solutions-col solutions-col-operations">
             <div className="solutions-col-header">
               <div className="cat-num">03</div>
-              <h4>Operations &amp; Communication</h4>
+              <h4>Collection-as-a-Service </h4>
+              <p>A comprehensive collections solution that supports the entire recovery lifecycle - 
+                from payment reminders and delinquency management to legal recovery and case closure.</p>
             </div>
+ 
 
+ 
+
+ 
+
+ 
+
+  
             <div className="solution-item glass-hover">
               <div className="solution-item-header">
                 <div className="solution-icon">
                   <LayoutTemplate size={18} />
                 </div>
-                <h4>Digital Content Management</h4>
+                <h4>Segmented collection strategy</h4>
               </div>
-              <p>
-                Data-driven content experiences that combine personalization,
-                interactivity, and measurable engagement.
-              </p>
+              
             </div>
 
             <div className="solution-item glass-hover">
@@ -354,13 +391,35 @@ export default function Solutions() {
                 <div className="solution-icon">
                   <img src="/icons/cpaas.png" alt="CPaaS" width="18" height="18" />
                 </div>
-                <h4>CPaaS</h4>
+                <h4>Automated reminder sequences</h4>
               </div>
-              <p>
-                A unified communication infrastructure connecting Voice,
-                WhatsApp, RCS, SMS, and Email through a single platform.
-              </p>
+              
             </div>
+             <div className="solution-item glass-hover">
+              <div className="solution-item-header">
+                <div className="solution-icon">
+                  <img src="/icons/cpaas.png" alt="CPaaS" width="18" height="18" />
+                </div>
+                <h4>Omni-channel outreach</h4>
+              </div>
+            </div>
+            <div className="solution-item glass-hover">
+              <div className="solution-item-header">
+                <div className="solution-icon">
+                  <img src="/icons/cpaas.png" alt="CPaaS" width="18" height="18" />
+                </div>
+                <h4>Multi-lingual support</h4>
+              </div>
+            </div>
+            <div className="solution-item glass-hover">
+              <div className="solution-item-header">
+                <div className="solution-icon">
+                  <img src="/icons/cpaas.png" alt="CPaaS" width="18" height="18" />
+                </div>
+                <h4>Conversational AI & chatbot</h4>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
