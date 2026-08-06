@@ -52,15 +52,15 @@ export default function Hero() {
   return (
     <section className="hero" id="hero" ref={containerRef}>
       <div className="hero-fintech-bg" aria-hidden="true">
-        <video ref={videoRef} className="hero-bg-video" autoPlay muted loop playsInline preload="auto" style={{ transform: 'scaleX(-1)' }}>
+        <video ref={videoRef} className="hero-bg-video" autoPlay muted loop playsInline preload="auto">
           <source src="/videos/hero-2.mp4" type="video/mp4" />
         </video>
       </div>
 
       <div className="hero-grid">
         <h1 className="hero-title">
-          <span className="hero-title-line">Powering Intelligent</span>
-          <span className="hero-title-line accent">Journeys from Selection to Collection</span>
+          <span className="hero-title-line">Powering Intelligent Journeys</span>
+          <span className="hero-title-line accent">from Selection to Collection</span>
         </h1>
         <p>
           Transforming engagement, lending, collections, and recovery with AI-powered technologies for BFSI

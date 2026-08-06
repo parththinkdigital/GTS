@@ -307,9 +307,9 @@ export default function ServicesSection() {
       items: [
         { name: "Integrated Legal Recovery (ILRM)", href: "#" },
         { name: "Online Dispute Resolution (ODR)", href: "#" },
-        { name: "AMediation and Conciliation", href: "#" },
+        { name: "Mediation and Conciliation", href: "#" },
         { name: "Legal Advisory", href: "#" },
-        { name: "Lok Adalats", href: "#" },
+        { name: "Lok Adalat", href: "#" },
         { name: "Legal Dashboard & Analytics", href: "#" },
       ],
       back: {
