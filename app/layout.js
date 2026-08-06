@@ -3,6 +3,9 @@ import "./globals.css";
 export const metadata = {
   title: "GTS Finlabs",
   description: "GTS Finlabs — Global Trade Solutions",
+  icons: {
+    icon: "/gts-favicon.png",
+  },
 };
 
 export const viewport = {

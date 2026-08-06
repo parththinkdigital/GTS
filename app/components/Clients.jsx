@@ -90,8 +90,6 @@ export default function Clients() {
             <span className="trust-stat-label-blue">Branches Nationwide</span>
           </div>
         </div>
-
-
       </div>
     </section>
   );

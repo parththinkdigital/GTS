@@ -154,7 +154,7 @@ export default function Navbar({ activeSection }) {
         </nav>
 
         {/* Right side: CTA + hamburger */}
-        <div className="flex items-center justify-end justify-self-end gap-3" style={{ marginRight: "3vw" }}>
+        <div className="col-start-3 flex items-center justify-end justify-self-end gap-3" style={{ marginRight: "3vw" }}>
           <a
             href="#"
             className="hidden lg:flex items-center gap-2 bg-[#102B7B] hover:bg-[#0c1f59] text-white rounded-full transition-colors duration-300"
@@ -184,7 +184,7 @@ export default function Navbar({ activeSection }) {
         style={{ pointerEvents: menuOpen ? "auto" : "none" }}
       >
         <div className="mobile-menu-inner">
-          <img src="/gts.png" alt="GTS Finlabs" className="mobile-menu-logo" />
+          {/* <img src="/gts.png" alt="GTS Finlabs" className="mobile-menu-logo" /> */}
           <nav className="mobile-nav-links">
             <a
               href="#hero"
