@@ -142,9 +142,9 @@ export default function Services() {
             <span className="e-dot"></span> Our Services
           </div> */}
           <h2 className="section-title" style={{ background: 'linear-gradient(135deg, #7A9FE8, #0C2D89, #0a1a4a)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-            Expert Services for
+            Our Services for
             <br />
-            simplifying lending journeys
+            Simplifying BFSI Operations
           </h2>
           <p className="section-intro" style={{ margin: "16px 0 clamp(24px, 3vw, 40px) 0", padding: 0, textAlign: "left", maxWidth: "680px" }}>
             Domain expertise backed by technology to help financial institutions scale

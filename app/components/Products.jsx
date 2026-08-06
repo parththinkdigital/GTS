@@ -60,9 +60,9 @@ export default function Products() {
             <span className="e-dot"></span> Our Products
           </div> */}
           <h2 className="section-title" style={{ background: 'linear-gradient(135deg, #7A9FE8, #0C2D89, #0a1a4a)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-            Unified Products Built for
+            Integrated Platform Built for 
             <br />
-            the End-End Lending Lifecycle
+            Managing BFSI Customer Lifecycle
           </h2>
           <p className="section-intro" style={{ margin: "16px 0 clamp(24px, 3vw, 40px) 0", padding: 0, textAlign: "left", maxWidth: "680px" }}>
             A digital suite of intelligent products designed to simplify journeys for engagement, collection, lending and legal recovery – reimaging the digital ecosystem.
