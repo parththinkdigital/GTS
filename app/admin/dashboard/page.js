@@ -100,8 +100,13 @@ export default function AdminDashboard() {
     <div className="admin-layout">
       <header className="admin-topbar">
         <div className="admin-topbar-brand">
-          <div className="admin-topbar-brand-dot"></div>
-          GTS Admin Portal
+          <img
+            src="/gts-logo-transparant.png"
+            alt="GTS Finlabs"
+            className="admin-topbar-brand-img"
+          />
+          <span className="admin-topbar-brand-sep">|</span>
+          <span>Admin Portal</span>
         </div>
         <div className="admin-topbar-actions">
           <span className="admin-topbar-tag">Admin View</span>

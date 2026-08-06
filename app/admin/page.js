@@ -40,8 +40,11 @@ export default function AdminLogin() {
     <div className="admin-login-wrap">
       <div className="admin-login-card">
         <div className="admin-login-logo">
-          <div className="admin-login-logo-dot"></div>
-          <span>GTS Admin Portal</span>
+          <img
+            src="/gts-logo-transparant.png"
+            alt="GTS Finlabs"
+            className="admin-login-logo-img"
+          />
         </div>
         <h1 className="admin-login-title">Welcome back</h1>
         <p className="admin-login-sub">Sign in to manage lead submissions.</p>
