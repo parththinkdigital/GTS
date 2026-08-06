@@ -68,6 +68,12 @@
   margin-bottom: 32px;
 }
 
+.admin-login-logo-img {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+}
+
 .admin-login-logo-dot {
   width: 10px;
   height: 10px;
@@ -199,6 +205,19 @@
   font-size: 1rem;
   color: var(--brand-blue);
   letter-spacing: -0.02em;
+}
+
+.admin-topbar-brand-img {
+  height: 30px;
+  width: auto;
+  object-fit: contain;
+}
+
+.admin-topbar-brand-sep {
+  color: var(--gray-400);
+  font-weight: 400;
+  font-size: 1.1rem;
+  line-height: 1;
 }
 
 .admin-topbar-brand-dot {

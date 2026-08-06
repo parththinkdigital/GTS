@@ -9,6 +9,7 @@ import {
   Mail,
   MessageSquareText,
   Phone,
+  RefreshCw,
   Send,
   ShieldCheck,
   UserRound,
@@ -21,6 +22,7 @@ export default function LeadForm() {
   const [formError, setFormError] = useState("");
   const nameInputRef = useRef(null);
   const cardRef = useRef(null);
+  const formRef = useRef(null);
 
   const onCardMove = (e) => {
     const el = cardRef.current;
@@ -80,6 +82,13 @@ export default function LeadForm() {
     nameInputRef.current?.focus();
   };
 
+  const handleReset = () => {
+    formRef.current?.reset();
+    setSubmitted(false);
+    setFormError("");
+    requestAnimationFrame(() => nameInputRef.current?.focus());
+  };
+
   return (
     <section className="section lead-section" id="contact">
       <div className="lead-orb lead-orb-blue" />
@@ -117,7 +126,7 @@ export default function LeadForm() {
 
           <div ref={cardRef} className={`lead-form-card${submitted ? " is-submitted" : ""}`} onMouseMove={onCardMove} onMouseLeave={onCardLeave}>
             <div className="lead-form-glow" />
-            <form className="lead-form-fields" onSubmit={handleSubmit}>
+            <form ref={formRef} className="lead-form-fields" onSubmit={handleSubmit}>
               <div className="lead-form-head">
                 <span>Request consultation</span>
                 <strong>Tell us where to start</strong>
@@ -193,6 +202,10 @@ export default function LeadForm() {
               <div className="lead-success-mark"><CheckCircle2 size={22} /></div>
               <h3>Thank you.</h3>
               <p>Our team shortly will connect with you.</p>
+              <button type="button" className="lead-success-reset" onClick={handleReset}>
+                <RefreshCw size={15} />
+                Submit another request
+              </button>
             </div>
           </div>
         </div>
