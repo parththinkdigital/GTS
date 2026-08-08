@@ -138,9 +138,9 @@ export default function Footer() {
               <div className="footer-link-group">
                 <p className="footer-group-title">Legal</p>
                 <ul className="footer-group-list">
-                  <li><a href="#">Privacy Policy</a></li>
-                  <li><a href="#">Terms of Service</a></li>
-                  <li><a href="#">Cookie Policy</a></li>
+                  <li><a href="/privacy/">Privacy Policy</a></li>
+                  <li><a href="/terms/">Terms of Service</a></li>
+                  {/* <li><a href="#">Cookie Policy</a></li> */}
                 </ul>
               </div>
             </div>

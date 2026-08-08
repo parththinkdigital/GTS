@@ -364,6 +364,7 @@ html {
   object-fit: cover;
   object-position: right center;
   opacity: 0.95;
+  transform: scaleX(-1);
 }
 
 .hero-grid {

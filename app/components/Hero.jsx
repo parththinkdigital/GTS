@@ -16,7 +16,7 @@ export default function Hero() {
 
     const video = videoRef.current;
     if (video) {
-      video.playbackRate = 0.75;
+      video.playbackRate = 1;
     }
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
