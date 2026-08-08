@@ -82,7 +82,7 @@ export default function Footer() {
             <div className="footer-left-col">
               <a className="footer-brand-link" href="/">
                 {/* <img alt="logo" width="30" height="30" src="/gts-logo.png" className="footer-brand-logo" /> */}
-                <img src="/gts-finlabs-logo-2.png" alt="GTS Finlabs" className="footer-brand-logo" />
+                <img src="/gts-logo-transparant.png" alt="GTS Finlabs" className="footer-brand-logo" />
               </a>
               <p className="footer-brand-tagline">
                 Next-generation financial technology enabling banks and fintechs to deliver intelligent customer engagement and seamless digital lending experiences.
