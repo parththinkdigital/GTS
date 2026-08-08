@@ -199,14 +199,8 @@ export default function TermsPage() {
     <div className="section" style={{ paddingTop: "clamp(120px, 15vh, 180px)", paddingBottom: "clamp(80px, 10vh, 120px)" }}>
       <div className="container" style={{ maxWidth: "min(90vw, 860px)", margin: "0 auto", padding: "0 32px" }}>
         {/* Page Header */}
-        <div style={{ textAlign: "center", marginBottom: "clamp(40px, 5vw, 64px)" }}>
-          <div
-            className="section-eyebrow"
-            style={{ marginBottom: "16px", justifyContent: "center" }}
-          >
-            <span className="e-dot" />
-            Legal
-          </div>
+        <div style={{ textAlign: "center", marginBottom: "clamp(25px, 5vw, 25px)" }}>
+          
           <h1
             style={{
               fontFamily: "var(--font-heading)",

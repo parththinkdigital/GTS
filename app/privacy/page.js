@@ -163,14 +163,8 @@ export default function PrivacyPage() {
     <div className="section" style={{ paddingTop: "clamp(120px, 15vh, 180px)", paddingBottom: "clamp(80px, 10vh, 120px)" }}>
       <div className="container" style={{ maxWidth: "min(90vw, 860px)", margin: "0 auto", padding: "0 32px" }}>
         {/* Page Header */}
-        <div style={{ textAlign: "center", marginBottom: "clamp(40px, 5vw, 64px)" }}>
-          <div
-            className="section-eyebrow"
-            style={{ marginBottom: "16px", justifyContent: "center" }}
-          >
-            <span className="e-dot" />
-            Legal
-          </div>
+        <div style={{ textAlign: "center", marginBottom: "clamp(25px, 5vw, 25px)" }}>
+          
           <h1
             style={{
               fontFamily: "var(--font-heading)",
@@ -207,31 +201,6 @@ export default function PrivacyPage() {
             marginBottom: "clamp(25px, 4vw, 30px)",
           }}
         >
-          <span
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "8px",
-              padding: "10px 20px",
-              borderRadius: "var(--radius-full)",
-              background: "rgba(12, 45, 137, 0.04)",
-              border: "1px solid rgba(12, 45, 137, 0.08)",
-              fontSize: "0.82rem",
-              fontWeight: 600,
-              color: "var(--brand-blue)",
-            }}
-          >
-            <span
-              style={{
-                width: "8px",
-                height: "8px",
-                borderRadius: "50%",
-                background: "var(--brand-orange)",
-                boxShadow: "0 0 10px rgba(245, 166, 35, 0.5)",
-              }}
-            />
-            Last updated: August 2026
-          </span>
         </div>
 
         {/* Privacy Sections — single container, separated by hr lines */}
