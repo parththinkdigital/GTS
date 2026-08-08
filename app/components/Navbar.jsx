@@ -2,8 +2,11 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 const navItems = [
+  { id: "about", label: "About", icon: "info" },
   { id: "products", label: "Products", icon: "folder" },
   { id: "services", label: "Services", icon: "faq" },
   { id: "solutions", label: "Solutions", icon: "inbox" },
@@ -40,6 +43,14 @@ const InboxIcon = () => (
     <path d="M10 22h4" />
   </svg>
 );
+
+const InfoIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nav-pill-icon">
+    <circle cx="12" cy="12" r="10" />
+    <path d="M12 16v-4" />
+    <path d="M12 8h.01" />
+  </svg>
+);
 const ChevronDown = () => (
   <svg viewBox="0 0 12 8" fill="none" aria-hidden="true" className="h-[7px] w-2.5 shrink-0">
     <path d="M1 1.25 6 6.25l5-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -57,6 +68,8 @@ export default function Navbar({ activeSection }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [hoveredTab, setHoveredTab] = useState(null);
   const menuRef = useRef(null);
+  const pathname = usePathname();
+  const router = useRouter();
 
   const effectiveTab = hoveredTab || activeSection;
 
@@ -92,8 +105,33 @@ export default function Navbar({ activeSection }) {
   const handleNavClick = (e, id) => {
     e.preventDefault();
     setMenuOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+
+    if (id === "hero") {
+      if (pathname === "/") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        router.push("/");
+      }
+      return;
+    }
+
+    if (pathname === "/") {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      router.push(`/#${id}`);
+    }
   };
+
+  useEffect(() => {
+    if (pathname !== "/") return;
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+
+    const t = window.setTimeout(() => {
+      document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
+    }, 150);
+    return () => window.clearTimeout(t);
+  }, [pathname]);
 
   const linkClass = (id) =>
     `inline-flex shrink-0 items-center gap-[7px] text-[0.95rem] font-medium tracking-[-0.01em] no-underline transition-colors duration-200 hover:text-[#00A896] ${effectiveTab === id ? "text-[#00A896]" : "text-[#1A1A1A]"
@@ -121,16 +159,16 @@ export default function Navbar({ activeSection }) {
         <nav className="hidden items-center justify-center gap-8 lg:flex xl:gap-12">
           <div className="nav-pill-tabs">
             {/* Home button */}
-            <a
+            <Link
               className={`nav-pill-home-btn${effectiveTab === "hero" ? " active" : ""}`}
-              href="#hero"
+              href="/#home"
               onClick={(e) => handleNavClick(e, "hero")}
               onMouseEnter={() => setHoveredTab("hero")}
               onMouseLeave={() => setHoveredTab(null)}
             >
               <HomeIcon />
               <span>Home</span>
-            </a>
+            </Link>
 
             {/* Nav links — hidden on mobile */}
             <div className="nav-pill-links">
@@ -146,6 +184,7 @@ export default function Navbar({ activeSection }) {
                   {item.icon === "folder" && <FolderIcon />}
                   {item.icon === "faq" && <FaqIcon />}
                   {item.icon === "inbox" && <InboxIcon />}
+                  {item.icon === "info" && <InfoIcon />}
                   <span>{item.label}</span>
                 </a>
               ))}
@@ -155,18 +194,15 @@ export default function Navbar({ activeSection }) {
 
         {/* Right side: CTA + hamburger */}
         <div className="col-start-3 flex items-center justify-end justify-self-end gap-3" style={{ marginRight: "3vw" }}>
-          <a
-            href="#"
+          <Link
+            href="/#contact"
             className="hidden lg:flex items-center gap-2 bg-[#102B7B] hover:bg-[#0c1f59] text-white rounded-full transition-colors duration-300"
             style={{ padding: "12px 28px" }}
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-            }}
+            onClick={(e) => handleNavClick(e, "contact")}
           >
             <span className="whitespace-nowrap font-semibold text-[15px]">Schedule a Demo</span>
             <ArrowRight />
-          </a>
+          </Link>
           <button
             onClick={() => setMenuOpen((p) => !p)}
             className="relative flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-[rgba(0,168,150,0.25)] bg-[#F5F7F8] transition-colors duration-300 hover:bg-white lg:hidden"
@@ -203,13 +239,9 @@ export default function Navbar({ activeSection }) {
                 {item.label}
               </a>
             ))}
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                setMenuOpen(false);
-                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-              }}
+            <Link
+              href="/#contact"
+              onClick={(e) => handleNavClick(e, "contact")}
               style={{
                 marginTop: "12px",
                 background: "var(--brand-blue)",
@@ -220,7 +252,7 @@ export default function Navbar({ activeSection }) {
               }}
             >
               Schedule a Demo
-            </a>
+            </Link>
           </nav>
         </div>
       </div>

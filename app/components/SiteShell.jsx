@@ -10,14 +10,19 @@ export default function SiteShell({ children }) {
   const pathname = usePathname();
   const isAdmin = pathname.startsWith("/admin");
   const [activeSection, setActiveSection] = useState(() => (pathname === "/" ? "hero" : null));
+  const [prevPathname, setPrevPathname] = useState(pathname);
+
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
+    setActiveSection(pathname === "/" ? "hero" : null);
+  }
 
   useEffect(() => {
     if (pathname !== "/" || typeof window === "undefined") {
-      setActiveSection(null);
       return;
     }
 
-    const sectionIds = ["hero", "products", "services", "solutions", "impact"];
+    const sectionIds = ["hero", "about", "products", "services", "solutions", "impact"];
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
